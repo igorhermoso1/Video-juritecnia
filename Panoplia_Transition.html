@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oregano:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kablammo&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Life+Savers:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        interpolate-size: allow-keywords; /*mandanga para obligar a interpolar en ausencia de punto A*/
+    }
+    #wrapper{
+        width: 80%;
+        height: 200vh;
+        margin: 0 auto;
+        outline: .5px solid black;
+
+    }
+    .teoria{
+            height: 10%;
+            outline: 1px solid black;
+    }
+    .teoriaGrande{
+            height: 20%;
+            outline: 1px solid black;
+    }
+    #correccion{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    }
+          
+    #tresCajas{
+            flex:1;
+            outline: 1px solid black;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+     .cajaTresCajas{
+        width: 20%;
+        aspect-ratio: 1/1;
+        background-color: orangered ;
+     }
+     #crecer{
+        transition: transform 1.5s;
+     }
+     #crecer:hover{
+        transform: scale(1.2);
+     }
+     #cambioColor{
+        transition: background-color 3s ease-in-out;
+     }
+     #cambioColor:hover{
+        background-color: yellowgreen;
+     }
+     #rotar{
+        transition: transform 0.3s;
+     }
+     #rotar:hover{
+        transform: rotate(-60deg);
+     }
+    #teclado{
+            flex:1;
+            outline: 1px solid black;
+             height: 100%;
+             display: flex;
+             justify-content: center;
+             align-items: flex-end;
+    }
+    .teclaTeclado{
+            flex:1;
+            height: 80%;
+            transform-origin: bottom center;
+            transition: transform 1s;
+            transform: scaleY(0);
+            outline: 1px solid black;
+            background-color: pink;
+    }
+    #teclado:hover{
+            #media{
+                transform: scaleY(0.5);
+            }
+            #baja{
+                transform: scaleY(0.25);
+            }
+            #alta{
+                transform: scaleY(1.2);
+            }
+    }
+    #carrera{
+            flex:1.3;
+            outline: 1px solid black;
+             height: 100%;
+             display: flex;
+             justify-content: space-evenly;
+             align-items: flex-start;
+             flex-direction: column;
+             background-color: bisque;
+             overflow: hidden;
+    }
+    .corredor{
+            width: 15%;
+            height: 20%;
+            border-radius: 30%;
+            outline: 5px solid white;
+            outline-offset: -4px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            box-shadow: -20px 0px 9px rgba(61, 60, 60, 0.623);
+            transition-property: transform;
+    }
+    #primero{
+            background-color: green;
+            transition-duration: 1.5s;
+            transition-delay: 0;
+    }
+    #segundo{
+            background-color: rgb(211, 121, 3);
+            transition-duration: 1s;
+            transition-delay: 0;
+    }
+    #tercero{
+            background-color: rgb(3, 152, 211);
+            transition-duration: 1s;
+            transition-delay: .70s;
+    }
+    #cuarto{
+            background-color: rgb(211, 3, 159);
+            transition-duration: 2.5s;
+            transition-delay: 0;
+    }
+    #carrera:hover{
+        #primero{
+            transform: translateX(500%);
+        }
+        #segundo{
+            transform: translateX(500%);
+        }
+        #tercero{
+            transform: translateX(500%);
+        }
+        #cuarto{
+            transform: translateX(500%);
+        }
+
+    }
+    #ejemploBoton{
+        flex:1;
+        height: 100%;
+        background-color: rgb(196, 113, 12);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #botonRelleno{
+        width: 70%;
+        height: 30%;
+        border-radius: 20px 20px 5px 5px;
+        font-family: "Unbounded", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: inset 0px 0px 0px 4px greenyellow;
+        outline: 2px solid white;
+        color: rgb(32, 32, 32);
+        background-image: linear-gradient(90deg,greenyellow 50%, transparent 50% );
+        background-size: 200% 100%;
+        background-position: 100% 0;
+        transition: background-position 0.3s, color 0.4s;
+    }
+    #botonRelleno:hover{
+           background-position: 0 0;
+           color: white;
+    }
+    #ejemploTarjetaElevada{
+        flex:1;
+        height: 100%;
+        background-color: beige;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #elevada{
+        width: 20%;
+        height: 75%;
+        border-radius: 20%;
+        background-color: rgb(182, 238, 238);
+        transition: transform 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28), box-shadow 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28); 
+    }
+    #elevada:hover{
+        transform: translateY(-16px);
+        box-shadow: 0px 15px 5px rgba(0, 0, 0, 0.568);
+    }
+    #ejemploSubrayado{
+        flex:1;
+        height: 100%;
+        background-color: burlywood;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p{
+            
+            color: brown;
+            font-size: 45px;
+            font-weight: bold;
+            font-family: "Oregano", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+        span{
+            color: brown;
+            font-size: 45px;
+             height: 6%;
+            background-color: brown;
+            display: block;
+            transform: scaleX(0);
+            transition: transform .3s;
+        }
+    }
+    #ejemploSubrayado:hover{
+        span{
+            transform: scaleX(1);
+        }
+    }
+    #ejemploDobleRaya{
+        flex:0.8;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(236, 213, 162);
+        
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: "Chewy", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 32px;
+            color:rgb(54, 54, 54);
+            height: 100px;
+            #abajo{
+                width: 120%;
+                height: 2%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                    span{
+                        transition: transform 0.5s;
+                    } 
+                    #doble1{
+                        display: block;
+                        background-color: black;
+                        width: 50%;
+                        height: 100%;
+                        transform-origin: left center;
+                    }
+                    #doble2{
+                        display: block;
+                        background-color: black;
+                        width: 50%;
+                        height: 100%;
+                        transform-origin: right center;
+                    }
+                }
+          
+            }
+            a:hover{
+                 
+                #doble1{
+                    transform:scaleX(0);
+                }
+                #doble2{
+                    transform:scaleX(0);
+                }
+            }
+     }
+        
+    
+    #ejemploSubra2{
+        flex:0.8;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: cornflowerblue;
+
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: "Chewy", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 32px;
+            color: white;
+
+                #subra{
+                    height: 4px;
+                    width: 100%;
+                    background-color: rgb(180, 198, 219);
+                    border-radius: 4px;
+                    transform: scaleX(0);
+                    transition: transform .4s ease-in-out;
+                }
+
+            }
+            a:hover{
+                 #subra{
+                      transform: scaleX(1);
+                 }
+            }
+      
+    }
+    #tooltip{
+        flex: 1;
+        height: 100%;
+        background-color: pink;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #smsNormal{
+        width: 30%;
+        height: 25%;
+        border-radius: 10px 15px 10px 15px;
+        background-color: rgb(233, 178, 40);
+        outline: 4px solid black;
+        color: white;
+        font-weight: bold;
+        font-family: "Chewy", system-ui;
+        font-style: normal;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #smsTooltip{
+        width: 30%;
+        height: 20%;
+        border-radius: 10%;
+        background-color: black;
+        box-shadow: inset 0px 0px 11px 6px rgb(233, 178, 40);
+        color:white;
+        font-weight: bold;
+        font-family: "Chewy", system-ui;
+        font-style: normal;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        outline: 4px solid rgb(233, 178, 40);
+        transform: translateY(-190%);
+        opacity: 0;
+        transition: transform .5s, opacity .5s ease-in-out 0.2s;
+    }
+    #tooltip:hover{
+        #smsTooltip{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    #carga{
+        flex: 0.6;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 5px;
+    }
+    .carga-item{
+        width: 10%;
+        aspect-ratio: 1/1;
+        border-radius: 200px;
+        background-color: grey;
+        transition: background-color 0.2s, box-shadow 0.3s, transform 0.2s;
+    }
+    
+    #primer{
+        transition-delay: 0.6s , 0.6s, 0.6s;
+    }
+    #quin{
+        transition-delay: 0.6s, 0.6s, 0.6s;
+    }
+    #segun{
+        transition-delay: 0.3s, 0.3s, 0.3s;
+    }
+    #cuar{
+        transition-delay: 0.3s, 0.3s, 0.3s;
+    }
+
+    #carga:hover{
+        div{
+            background-color: rgb(211, 211, 87);
+            box-shadow: 0px 0px 6px rgb(211, 211, 87), 0px 0px 12px rgb(221, 221, 168);
+            transform: translateY(-20px);
+        }
+    }
+    #deformes{
+        flex: 0.8;
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: rgb(205, 170, 238);
+    }
+    .cuasi{
+        width: 10%;
+        aspect-ratio: 1/1.5;
+        background-color: rgb(122, 67, 28);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: border-radius 0.5s, transform 0.5s;
+    }
+    #deformes:hover{
+            #buevo{
+                border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+                transform: translateY(-100%)
+            }
+            #patata{
+                border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+                transform: translateY(-50%)
+            }
+            #gota{
+                border-radius:  50% 50% 50% 70% / 70% 30% 30% 70%;
+                transform: rotate(180deg)
+            }
+            #blob{
+                border-radius:  30% 70% 70% 30% / 30% 30% 70% 70%;
+                transform: translateY(50%)
+            }
+            #pua{
+                border-radius:  50% 50% 50% 50% / 30% 30% 70% 70%;
+                transform: translateY(100%)
+            }
+    }
+    #rajoy{
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(76, 155, 245);
+
+        div{
+            width: 30%;
+            height: 90%;
+            border-radius: 20px;
+            background-image: url(img/rajoy.jpg);
+            background-size: 100% 100%;
+            transition: background 1.6s;
+        }
+        div:hover{
+            background-image: url(img/samara.webp);
+        }
+
+    }
+    #saturacion{
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: plum;
+
+        div{
+            width: 30%;
+            height: 90%;
+            border-radius: 20px;
+            background: url("img/Lina-Morgan_b.png") no-repeat center / 100% 100%;
+            transition: background .5s, box-shadow .5s;
+        }
+        div:active{
+            background: url("img/LM.png") no-repeat center / 100% 100%;
+             box-shadow: -10px 5px 5px rgba(54, 54, 54, 0.63);
+        }
+
+    }
+    #moverFondo{
+        flex: 1;
+         height: 100%;
+         background: url(img/jdTrip.jpg) no-repeat 0% 100% / 200% 200%;
+         transition: background 1s;
+    }
+    #moverFondo:hover{
+        background: url(img/jdTrip.jpg) no-repeat 100% 0% / 200% 200%;
+    }
+   
+   #zoom{
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: crimson;
+
+        div{
+             width: 30%;
+            height: 90%;
+            border-radius: 20px;
+            background: url(img/luisAguile.jpg) no-repeat center / 100% 100%;
+            transition: background .5s;
+        }
+        div:hover{
+            background: url(img/luisAguile.jpg) no-repeat center / 250% 250%;
+        }
+   }
+   #zoom2{
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 169, 251);
+
+        div{
+             width: 30%;
+            height: 90%;
+            border-radius: 20px;
+            background: url(img/luisMi.jpg) no-repeat center / 100% 100%;
+            transition: background .5s, box-shadow 0.5s;
+        }
+        div:hover{
+            background: url(img/luisMi.jpg) no-repeat 50% 13% / 280% 280%;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.589);
+        }
+   }
+   #gradiante{
+        flex: 1;
+        height: 100%;
+        background-image: linear-gradient(130deg,purple 10%, gold 20%, white 30%, transparent 45%, green 55%,
+                                         pink 65%, rgb(145, 126, 21) 75%, brown 85%, grey 90%);
+        background-size: 350% 350%;
+        background-position: 0% 0%;
+        transition: background-position .7s cubic-bezier(0.12, 2.00, 0.48, 0.30) 0.01s;
+   }
+   #gradiante:hover{
+        background-position: 50% 50%;
+   }
+   #gradiante:active{
+        background-position: 100% 100%;
+   }
+   #bordesRedondeados{
+         flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(132, 218, 146);
+
+        div{
+             width: 30%;
+            height: 90%;
+            background-color: blueviolet;
+            outline: 1px solid black;
+            transition: border-radius 1.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+             #visor{
+                width: 20%;
+                height: 20%;
+                background-color: darkcyan;
+                outline: 1px solid black;
+                transform: translateY(-90%) scaleX(3);
+                 transition: border-radius 1.2s;
+             }
+        }
+        div:hover{
+            border-radius: 40%  40% 50% 30% / 70% 70% 50% 50%;
+            #visor{
+                 border-radius: 90%  40% 50% 60% / 70% 70% 30% 50%;
+            }
+        }
+   }
+   #polaroid{
+         flex: 1;
+        height: 100%;
+         display: flex;
+         background-color: grey;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        #foto{
+            width: 30%;
+            height: 80%;
+            overflow: hidden;
+            background-color: azure;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: rotate(-20deg);
+            transform-origin: center bottom;
+            opacity: 0.2;
+            transition: all .4s;
+               img{
+                 width: 80%;
+                 height: 70%;
+                
+              }
+        }
+         #foto:hover{
+              transform: rotate(0deg);
+               opacity:1;
+         }
+
+   }
+   #juegoCartas{
+         flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(9, 190, 9);
+        outline: 2px solid white;
+        outline-offset: -12px;
+        div {
+            width: 10%;
+            aspect-ratio: 2/3;
+            background-size: 100% 100%;
+            transform-origin: bottom center;
+            transition: transform .5s, outline .5s, box-shadow .5s;
+            outline: .3px solid white; 
+        }
+        #luna {
+            background-image: url(img/La_luna.png);
+            transform: translateX(50%) rotate(-40deg);
+        }
+        #rueda {
+            background-image: url(img/La_Rueda.png);
+            transform: translateX(-50%) rotate(40deg);
+        }
+        #muerte {
+            background-image: url(img/La_Muerte.png);
+            transform: translateX(-150%);
+        }
+   }
+   #juegoCartas:hover{
+        #luna {
+            transform: translateX(-150%);
+        }
+        #rueda {
+            transform: translateX(150%);
+        }
+   }
+   #juegoCartas:active {
+        #muerte{
+            transform: translate(-150%, -100%);
+            outline: 1px solid red;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.589);
+        }
+   }
+    #tresTextos{
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(240, 239, 239);
+        overflow: hidden;
+
+        div{
+            width: 80%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+    
+        }
+        #palabra1{
+                 font-family: "Mystery Quest", system-ui;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 48px;
+                color: rgba(0, 0, 0, 0.555);
+                transform: translateY(600%);
+                transition: transform 1s cubic-bezier(0.08, 1.47, 0.62, -0.02) 0.5s,
+                            color 1s;
+        }
+        #palabra2{
+                font-size: 25px;
+                 font-family: "Kablammo", system-ui;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                font-style: normal;
+                display:inline-block;
+                font-variation-settings:
+                    "MORF" 0;
+                color: rgba(0, 0, 0, 0.555);
+               transform: translateX(500px) rotate(-290deg);
+            transition: transform 0.6s ease-in-out 0s, 
+                        color 0.6s;
+        }
+        #palabra3{
+            display:inline-block;
+            font-family: "Life Savers", serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 40px;
+            color: rgba(0, 0, 0, 0.555);
+            transform: translate(500px , -500px);
+            transition: transform .9s cubic-bezier(0.68, 1.47, 0.42, -0.02),
+                        color .9s;
+        }
+}
+    #tresTextos:hover{
+        #palabra1{
+            transform: translateY(0);
+            color: rgb(36, 179, 36);
+        }
+        #palabra2{
+            transform: translateX(0) rotate(0deg);
+            color: rgb(223, 163, 13)
+        }
+        #palabra3{
+            transform: translate(20px,0);
+            color: rgb(177, 50, 177);
+        }
+    }
+
+    #cajaRotacion{
+        flex: 1;
+        height: 100%;
+        display: flex;
+        background-color: rgb(149, 250, 135);
+        justify-content: space-evenly;
+        align-items: flex-end;
+        overflow: hidden ;
+
+        article{
+            width: 25%;
+            height: 80%;
+            background-color: rgba(73, 122, 66, 0.253);
+
+            div{
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle at center, white 20%, rgb(85, 85, 226) 60%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform-origin: bottom center;
+                transform: rotate(180deg);
+                box-shadow: 2px 4px 5px rgba(100, 100, 100, 0.637);
+                transition: transform .9s cubic-bezier(0.33, 0.49, 0.95, 0.22);
+
+                img{
+                    width: 90%;
+                    height: 90%;
+                }
+            }
+        }
+        article:hover{
+            div{
+                transform: rotate(0deg);
+            }
+        }
+    }
+    #cajaFlex{
+        flex: 1;
+        height: 100%;
+        display: flex;
+        background-color: rgb(25, 81, 202);
+        justify-content: space-evenly;
+        align-items: center;
+        column-gap: 90px;
+
+        div{
+            flex: 1;
+            height: 60%;
+            background-color: crimson;
+            border-radius: 10%;
+            outline: 2px solid white;
+            transition: flex .2s;
+        }
+        div:hover{
+            flex: 1.7;
+        }
+    }
+    #semiSemiCarrusel{
+        flex: 1;
+        height: 100%;
+        outline: 1px solid black;
+        display: flex;
+        background: url(img/Pokemon.png) no-repeat 0% 50% / 300% 100%;
+        transition: background .7s;
+    }
+    #semiSemiCarrusel:hover{
+         background: url(img/Pokemon.png) no-repeat 50% 50% / 300% 100%;
+    }
+    #semiSemiCarrusel:active{
+         background: url(img/Pokemon.png) no-repeat 100% 50% / 300% 100%;
+    }
+    #carteleraFlotanteSeleccionable{
+         flex: 1;
+        height: 100%;
+        display: flex;
+    }
+</style>
+<body>
+    <div id="wrapper">
+        <section class="teoria" id="correccion">
+            <article id="tresCajas">
+                <div class="cajaTresCajas" id="crecer"></div>
+                <div class="cajaTresCajas" id="cambioColor"></div>
+                <div class="cajaTresCajas" id="rotar"></div>
+            </article>
+            <article id="teclado">
+                <div class="teclaTeclado" id="media"></div>
+                <div class="teclaTeclado" id="alta"></div>
+                <div class="teclaTeclado" id="media"></div>
+                <div class="teclaTeclado" id="baja"></div>
+                <div class="teclaTeclado" id="media"></div>
+                <div class="teclaTeclado" id="baja"></div>
+                <div class="teclaTeclado" id="media"></div>
+                <div class="teclaTeclado" id="alta"></div>
+                <div class="teclaTeclado" id="media"></div>
+                <div class="teclaTeclado" id="baja"></div>
+                <div class="teclaTeclado" id="media"></div>
+                <div class="teclaTeclado" id="baja"></div>
+            </article>
+            <article id="carrera">
+                <div class="corredor" id="primero">1</div>
+                <div class="corredor" id="segundo">2</div>
+                <div class="corredor" id="tercero">3</div>
+                <div class="corredor" id="cuarto">4</div>
+            </article>
+        </section>
+
+        <section class="teoria" id="correccion">
+            <article id="ejemploBoton">
+                <div id="botonRelleno">
+                    RELLÉNAME!!
+                </div>
+            </article>
+            <article id="ejemploTarjetaElevada">
+                <div id="elevada"></div>
+            </article>
+            <article id="ejemploSubrayado">
+                <p>IGOR<span></span></p> 
+            </article>
+        
+            <article id="ejemploDobleRaya">
+                <a href="">Semos Dos 
+                <div id="abajo">
+                    <span id="doble1"></span><span id="doble2"></span>
+                </div>
+                </a>
+            
+            </article>
+            
+        </section>
+    <section class="teoria" id="correccion">
+        <article id="ejemploSubra2">
+            <a href="">Púlsalo <span id="subra"></span></a>
+        </article>
+        <article id="tooltip">
+            <div id="smsTooltip">Manda Salvar al 7777</div>
+            <div id="smsNormal">Esto es un sms</div>
+        </article>
+        <article id="carga">
+            <div class="carga-item" id="primer"></div>
+            <div class="carga-item" id="segun"></div>
+            <div class="carga-item" id="tercer"></div>
+            <div class="carga-item" id="cuar"></div>
+            <div class="carga-item" id="quin"></div>
+        </article>
+        <article id="deformes">
+            <div class="cuasi" id="buevo"></div>
+            <div class="cuasi" id="patata"></div>
+             <div class="cuasi" id="gota">⬇️</div>
+            <div class="cuasi" id="blob"></div>
+            <div class="cuasi" id="pua"></div>
+        </article>
+    </section>
+    <section class="teoria" id="correccion">
+        <article id="rajoy">
+            <div></div>
+        </article>
+        <article id="saturacion">
+            <div></div>
+        </article>
+        <article id="moverFondo">
+         
+        </article>
+
+    </section>
+    <section class="teoria" id="correccion">
+        <article id="zoom">
+            <div></div>
+        </article>
+        <article id="zoom2">
+            <div></div>
+        </article>
+        <article id="gradiante">
+            
+        </article>
+    </section>
+    <section class="teoria" id="correccion">
+        <article id="bordesRedondeados">
+            <div>
+                <div id="visor"></div>
+            </div>
+        </article>
+        <article id="polaroid">
+            <div id="foto">
+                <img src="img/darkLink.webp">
+                <p>Dark Link</p>
+            </div>
+        </article>
+        <article id="juegoCartas">
+            <div id="luna"></div>
+            <div id="rueda"></div>
+            <div id="muerte"></div>
+        </article>
+    </section>
+     <section class="teoria" id="correccion"> <!--Este section podría recibir estilo(css) por ser:
+                                                    1) un section con : section{}
+                                                    2) un class con: .teoria
+                                                    3) un id con: #correccion
+                                                -->
+        <article id="tresTextos">
+           <div>
+                <p id="palabra1">Mandangas</p>
+                <p><span id="palabra2">de</span><span id="palabra3">  Igor</span></p>
+           </div>
+        </article>
+        <article id="cajaRotacion">
+               <article> <div><img id="suneo" src="img/suneo.webp"></div></article>
+               <article> <div><img id="erraldoi" src="img/erraldoi.webp"></div></article>
+               <article> <div><img id="sizuka" src="img/shizuka.webp"></div></article>
+                
+        </article>
+        <article id="cajaFlex">
+             <div></div>
+             <div></div>
+             <div></div>
+        </article>
+    </section>
+    <section class="teoriaGrande" id="correccion">
+        <div id="semiSemiCarrusel">
+
+        </div>
+        <div id="carteleraFlotanteSeleccionable">
+
+        </div>
+
+    </section>
+
+
+    </div>
+</body>
+</html>
