@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Videoteca Juritecnia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Barlow+Condensed:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#552583; --purple-d:#2d1049; --gold:#FDB927; --ink:#0d0a12; --paper:#f5efe0;
+  --marker:'Permanent Marker','Marker Felt',Impact,sans-serif;
+  --body:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--paper); font-family:var(--body); font-size:1.15rem; line-height:1.4;
+  background:
+    repeating-linear-gradient(135deg,transparent 0 22px,rgba(253,185,39,.035) 22px 24px),
+    radial-gradient(circle at 20% 0,#3a1a5c 0,transparent 55%),
+    var(--ink);
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* Cabecera */
+header{padding:3rem 1.2rem 2.5rem;max-width:1100px;margin:0 auto;position:relative}
+.tag{font-family:var(--marker);font-size:1.1rem;color:var(--gold);transform:rotate(-3deg);display:inline-block;margin:0 0 .4rem}
+h1{
+  font-family:var(--marker); font-weight:400; margin:0; line-height:.92;
+  font-size:clamp(3.2rem,12vw,8rem); color:var(--gold);
+  text-shadow:4px 4px 0 var(--purple), 8px 8px 0 var(--ink);
+  transform:rotate(-2deg); letter-spacing:.01em;
+}
+.sub{max-width:34rem;margin:1.6rem 0 1.4rem;font-size:1.3rem;color:#e8dcc0}
+.btn{
+  display:inline-block;text-decoration:none;font-family:var(--marker);font-size:1.2rem;
+  background:var(--gold);color:var(--purple-d);padding:.7rem 1.4rem;border:3px solid var(--ink);
+  box-shadow:6px 6px 0 var(--purple);transition:transform .15s, box-shadow .15s;
+}
+.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--purple)}
+nav{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.8rem}
+nav a{
+  text-decoration:none;font-weight:800;font-size:1.1rem;padding:.25rem .9rem;border:2px dashed var(--gold);color:var(--gold);
+}
+nav a:hover{background:var(--gold);color:var(--ink)}
+
+/* Bloques */
+main{max-width:1100px;margin:0 auto;padding:0 1.2rem 4rem}
+.bloque{margin-top:3.5rem;border-top:6px solid var(--gold);padding-top:1.2rem}
+.bhead{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.num{
+  font-family:var(--marker);font-size:clamp(5rem,16vw,9rem);line-height:.9;color:transparent;
+  -webkit-text-stroke:3px var(--gold);text-shadow:6px 6px 0 var(--purple);
+}
+.bhead h2{font-family:var(--marker);font-weight:400;font-size:clamp(1.8rem,5vw,3rem);margin:0;color:var(--paper)}
+.bhead p{margin:.2rem 0 0;color:#cdbfe0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.8rem;margin-top:1.8rem}
+.card{
+  background:var(--purple);border:3px solid var(--ink);box-shadow:7px 7px 0 var(--gold);
+  display:flex;flex-direction:column;
+}
+.card:nth-child(even){background:var(--purple-d)}
+video{width:100%;aspect-ratio:16/9;background:#000;display:block;border-bottom:3px solid var(--ink)}
+.cbody{padding:.8rem 1rem 1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.cbody h3{margin:0;font-size:1.35rem;font-weight:800;line-height:1.15;color:var(--gold)}
+.dl{align-self:flex-start;font-weight:700;font-size:1rem;color:var(--paper);text-decoration:underline;text-underline-offset:3px}
+.msg{margin-top:1.8rem;padding:1.2rem;border:3px dashed var(--gold);background:rgba(85,37,131,.35)}
+footer{text-align:center;padding:2rem 1rem 3rem;font-family:var(--marker);color:var(--gold);border-top:2px dashed rgba(253,185,39,.4)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="tag">Grabaciones de clase</p>
+  <h1>Videoteca<br>Juritecnia</h1>
+  <p class="sub">Todos los videos de clase, ordenados por bloques. Dale al play y a estudiar.</p>
+  <a class="btn" href="https://igorhermoso1.github.io/Formaci-n_Juritecnia/" target="_blank" rel="noopener">Ir a la plataforma de alumnos</a>
+  <nav id="indice" aria-label="Bloques"></nav>
+</header>
+
+<main id="bloques"></main>
+
+<footer>Juritecnia &bull; Igor Hermoso</footer>
+
+<script>
+/* =====================================================================
+   CONFIGURACIÓN DE BLOQUES  (se mantiene en sincronía con VIDEOS.md)
+   - release: nombre/etiqueta de la Release de GitHub de donde se leen
+     los videos automáticamente (se ordenan por nombre).
+   - videos: lista manual [{titulo, url}] para videos fuera de Releases.
+     Si se rellena, tiene prioridad sobre la lectura automática.
+   ===================================================================== */
+const REPO = "igorhermoso1/Video-juritecnia";
+const BLOQUES = [
+  {
+    id: 1,
+    titulo: "Bloque 1",
+    descripcion: "Primeras grabaciones del curso.",
+    release: "Grabaciones",
+    videos: [
+      {titulo: "Boceto general",     url: "https://github.com/igorhermoso1/Video-juritecnia/releases/download/v1.0/boceto_general.mp4"},
+      {titulo: "Corrección Pokédex", url: "https://github.com/igorhermoso1/Video-juritecnia/releases/download/v1.0/correccion_pokedex.mp4"},
+      {titulo: "Cuarto ejercicio",   url: "https://github.com/igorhermoso1/Video-juritecnia/releases/download/v1.0/Cuarto.ejercicio.mp4"},
+      {titulo: "Popurri",            url: "https://github.com/igorhermoso1/Video-juritecnia/releases/download/v1.0/Popurri.mp4"},
+      {titulo: "Primer ejercicio",   url: "https://github.com/igorhermoso1/Video-juritecnia/releases/download/v1.0/primerEjercicio.mp4"}
+    ]
+  }
+  /* Próximos bloques, por ejemplo:
+  ,{ id: 2, titulo: "Bloque 2", descripcion: "...", release: "Grabaciones-2", videos: [] }
+  */
+];
+
+const EXT = /\.(mp4|m4v|webm|mov|mkv|ogv)$/i;
+const limpiar = n => decodeURIComponent(n).replace(EXT, "").replace(/[_]+/g, " ").replace(/\s+/g, " ").trim();
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+let releasesCache = null;
+async function getReleases(){
+  if (releasesCache) return releasesCache;
+  const r = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=100`);
+  if (!r.ok) throw new Error("GitHub API " + r.status);
+  return (releasesCache = await r.json());
+}
+
+async function cargarVideos(b){
+  if (b.videos && b.videos.length) return b.videos;
+  const rels = await getReleases();
+  const clave = b.release.toLowerCase();
+  const rel = rels.filter(r => (r.tag_name||"").toLowerCase() === clave || (r.name||"").toLowerCase() === clave);
+  const assets = rel.flatMap(r => r.assets || []).filter(a => EXT.test(a.name) || (a.content_type||"").startsWith("video"));
+  assets.sort((x,y) => x.name.localeCompare(y.name, "es", {numeric:true}));
+  return assets.map(a => ({titulo: limpiar(a.name), url: a.browser_download_url}));
+}
+
+function pintar(){
+  const main = document.getElementById("bloques");
+  const idx = document.getElementById("indice");
+  BLOQUES.forEach(b => {
+    idx.insertAdjacentHTML("beforeend", `<a href="#bloque-${b.id}">${esc(b.titulo)}</a>`);
+    main.insertAdjacentHTML("beforeend", `
+      <section class="bloque" id="bloque-${b.id}">
+        <div class="bhead">
+          <div class="num" aria-hidden="true">${b.id}</div>
+          <div><h2>${esc(b.titulo)}</h2><p>${esc(b.descripcion||"")}</p></div>
+        </div>
+        <div class="grid" id="grid-${b.id}"><div class="msg">Cargando videos…</div></div>
+      </section>`);
+    cargarVideos(b).then(vs => {
+      const g = document.getElementById("grid-"+b.id);
+      if (!vs.length){
+        g.innerHTML = `<div class="msg">Todavía no hay videos en este bloque.</div>`;
+        return;
+      }
+      g.innerHTML = vs.map(v => `
+        <article class="card">
+          <video controls preload="metadata" src="${esc(v.url)}"></video>
+          <div class="cbody">
+            <h3>${esc(v.titulo)}</h3>
+            <a class="dl" href="${esc(v.url)}" download>Descargar video</a>
+          </div>
+        </article>`).join("");
+    }).catch(() => {
+      document.getElementById("grid-"+b.id).innerHTML =
+        `<div class="msg">No se pudieron cargar los videos. Recarga la página en un momento.</div>`;
+    });
+  });
+}
+pintar();
+</script>
+</body>
+</html>
