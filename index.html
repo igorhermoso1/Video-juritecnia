@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Videoteca Igor teechah</title>
+<link rel="icon" href="logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Barlow+Condensed:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#552583; --purple-d:#2a0f47; --gold:#FDB927; --yellow:#FFD60A; --ink:#0b0810; --paper:#f5efe0;
+  --marker:'Permanent Marker','Marker Felt',Impact,sans-serif;
+  --body:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--paper);font-family:var(--body);font-size:1.15rem;line-height:1.4;
+  background:
+    radial-gradient(circle at 15% 8%,rgba(85,37,131,.65) 0,transparent 45%),
+    radial-gradient(circle at 90% 55%,rgba(253,185,39,.10) 0,transparent 40%),
+    radial-gradient(rgba(255,255,255,.05) 1.2px,transparent 1.4px) 0 0/14px 14px,
+    repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 3px,transparent 3px 7px),
+    var(--ink);
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* Cinta de precaución */
+.cinta{
+  background:repeating-linear-gradient(-45deg,var(--gold) 0 22px,var(--ink) 22px 44px);
+  height:16px;border-bottom:3px solid var(--ink);
+}
+.ticker{background:var(--gold);color:var(--ink);overflow:hidden;white-space:nowrap;font-family:var(--marker);font-size:1.15rem;border-block:3px solid var(--ink);transform:rotate(-1deg);margin:.6rem -1rem 0}
+.ticker span{display:inline-block;padding:.25rem 0;animation:marq 28s linear infinite}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* Cabecera */
+header{max-width:1150px;margin:0 auto;padding:2rem 1.2rem 1rem}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:1.5rem;align-items:center}
+.tag{font-family:var(--marker);color:var(--gold);transform:rotate(-3deg);display:inline-block;margin:0 0 .6rem;font-size:1.15rem;border:2px solid var(--gold);padding:.1rem .7rem}
+h1{
+  font-family:var(--marker);font-weight:400;margin:0;line-height:.95;font-size:clamp(2.8rem,8vw,6rem);
+  color:var(--yellow);text-shadow:4px 4px 0 var(--purple),8px 8px 0 var(--ink);transform:rotate(-2deg);
+}
+h1 em{font-style:italic;color:var(--paper);display:inline-block;transform:skewX(-8deg);text-shadow:4px 4px 0 var(--purple),8px 8px 0 var(--ink)}
+.logo{width:100%;height:auto;transform:rotate(2deg);filter:drop-shadow(0 10px 0 rgba(0,0,0,.45)) drop-shadow(0 0 28px rgba(85,37,131,.9))}
+.sub{max-width:32rem;margin:1.6rem 0 1.3rem;font-size:1.35rem;color:#eadfc4}
+.btn{
+  display:inline-block;text-decoration:none;font-family:var(--marker);font-size:1.25rem;background:var(--gold);color:var(--purple-d);
+  padding:.7rem 1.5rem;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--purple);transition:transform .15s,box-shadow .15s;transform:rotate(-1deg);
+}
+.btn:hover{transform:translate(3px,3px) rotate(-1deg);box-shadow:3px 3px 0 var(--purple)}
+nav{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.6rem}
+nav a{text-decoration:none;font-weight:800;font-size:1.1rem;padding:.25rem .9rem;border:2px dashed var(--gold);color:var(--gold)}
+nav a:hover{background:var(--gold);color:var(--ink)}
+
+/* Bloques */
+main{max-width:1150px;margin:0 auto;padding:0 1.2rem 4rem}
+.bloque{margin-top:4rem;position:relative}
+.goteo{display:block;width:100%;height:46px;margin-bottom:-2px}
+.bhead{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;background:var(--purple);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--gold);padding:1rem 1.4rem;transform:rotate(-.6deg)}
+.bloque:nth-of-type(even) .bhead{background:var(--purple-d);transform:rotate(.6deg)}
+.num{font-family:var(--marker);font-size:clamp(4.5rem,13vw,7.5rem);line-height:.9;color:var(--yellow);text-shadow:5px 5px 0 var(--ink)}
+.num.txt{font-size:clamp(2.4rem,8vw,4.2rem);line-height:1}
+.bhead h2{font-family:var(--marker);font-weight:400;font-size:clamp(1.8rem,5vw,3rem);margin:0;color:var(--paper)}
+.bhead p{margin:.2rem 0 0;color:#d9c9ee}
+.cuenta{margin-left:auto;font-family:var(--marker);background:var(--ink);color:var(--gold);padding:.3rem .9rem;border:2px solid var(--gold);transform:rotate(3deg)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:2.4rem 2rem;margin-top:2.4rem}
+.card{position:relative;background:var(--purple-d);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--gold);transform:rotate(var(--r,0deg));transition:transform .2s}
+.card:nth-child(3n+1){--r:-.8deg}.card:nth-child(3n+2){--r:.7deg}.card:nth-child(3n){--r:-.3deg}
+.card:hover{transform:rotate(0) translateY(-4px)}
+.card::before,.card::after{content:"";position:absolute;top:-14px;width:78px;height:24px;background:rgba(253,185,39,.85);border:1px solid rgba(0,0,0,.35);z-index:2}
+.card::before{left:-18px;transform:rotate(-38deg)}
+.card::after{right:-18px;transform:rotate(38deg)}
+.screen{position:relative;border-bottom:3px solid var(--ink);background:#000}
+video{width:100%;aspect-ratio:16/9;display:block;background:radial-gradient(circle,var(--purple) 0,#000 80%)}
+.rec{position:absolute;top:8px;left:8px;font-family:var(--marker);font-size:.95rem;background:var(--ink);color:var(--yellow);padding:.05rem .6rem;border:2px solid var(--yellow);pointer-events:none;z-index:1}
+.rec::before{content:"";display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ff3b30;margin-right:.4em}
+.n{position:absolute;right:-12px;bottom:-22px;width:54px;height:54px;border-radius:50%;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);display:grid;place-items:center;font-family:var(--marker);font-size:1.7rem;transform:rotate(-10deg);z-index:2;box-shadow:3px 3px 0 var(--purple)}
+.cbody{padding:1rem 1.1rem 1.1rem;display:flex;flex-direction:column;gap:.6rem}
+.cbody h3{margin:0;font-family:var(--marker);font-weight:400;font-size:1.55rem;line-height:1.1;color:var(--yellow);padding-right:2.6rem}
+.dl{align-self:flex-start;font-weight:800;font-size:1.02rem;color:var(--ink);background:var(--gold);text-decoration:none;padding:.15rem .8rem;border:2px solid var(--ink)}
+.dl:hover{background:var(--paper)}
+.msg{grid-column:1/-1;padding:1.3rem;border:3px dashed var(--gold);background:rgba(85,37,131,.35);font-size:1.2rem}
+footer{text-align:center;padding:2.4rem 1rem 3rem;font-family:var(--marker);color:var(--gold);font-size:1.3rem}
+footer em{color:var(--paper)}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.logo{max-width:420px;margin:0 auto}.cuenta{margin-left:0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* Bloques desplegables + carga bajo demanda */
+.bhead{cursor:pointer;user-select:none;position:relative;padding-right:4.2rem}
+.bhead:hover{filter:brightness(1.12)}
+.chev{position:absolute;right:1.2rem;top:50%;width:0;height:0;margin-top:-10px;border-left:14px solid transparent;border-right:14px solid transparent;border-top:20px solid var(--yellow);filter:drop-shadow(3px 3px 0 var(--ink));transition:transform .25s}
+.bhead[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.grid[hidden]{display:none}
+.poster{display:grid;place-items:center;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;color:var(--paper);font-family:var(--marker);font-size:1.1rem;
+  background:radial-gradient(circle at 50% 45%,var(--purple) 0,var(--purple-d) 55%,#000 100%),repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 6px,transparent 6px 14px)}
+.poster .play{display:block;width:76px;height:76px;border-radius:50%;background:var(--yellow);border:4px solid var(--ink);box-shadow:5px 5px 0 var(--gold);position:relative;transition:transform .15s}
+.poster .play::after{content:"";position:absolute;left:28px;top:17px;border-left:26px solid var(--ink);border-top:16px solid transparent;border-bottom:16px solid transparent}
+.poster:hover .play{transform:scale(1.1) rotate(-6deg)}
+.poster .lbl{display:block;margin-top:.7rem}
+.poster-in{display:flex;flex-direction:column;align-items:center}
+</style>
+</head>
+<body>
+
+<div class="cinta" aria-hidden="true"></div>
+
+<header>
+  <div class="hero">
+    <div>
+      <p class="tag">Grabaciones de clase</p>
+      <h1>Videoteca<br>Igor <em>teechah</em></h1>
+      <p class="sub">Aquí están todas las clases grabadas, ordenadas por bloques. Dale al play y a estudiar.</p>
+      <a class="btn" href="https://igorhermoso1.github.io/Formaci-n_Juritecnia/" target="_blank" rel="noopener">Ir a la plataforma de alumnos</a>
+      <nav id="indice" aria-label="Bloques"></nav>
+    </div>
+    <img class="logo" src="logo.webp" alt="Igor-Movies, la tele dictatorial bro">
+  </div>
+  <div class="ticker" aria-hidden="true"><span>IGOR-MOVIES &#9733; LA TELE DICTATORIAL BRO &#9733; DALE AL PLAY &#9733; IGOR-MOVIES &#9733; LA TELE DICTATORIAL BRO &#9733; DALE AL PLAY &#9733; IGOR-MOVIES &#9733; LA TELE DICTATORIAL BRO &#9733; DALE AL PLAY &#9733; IGOR-MOVIES &#9733; LA TELE DICTATORIAL BRO &#9733; DALE AL PLAY &#9733;</span></div>
+</header>
+
+<main id="bloques"></main>
+
+<footer>Igor <em>teechah</em> &#9733; Juritecnia</footer>
+
+<script>
+/* =====================================================================
+   CONFIGURACIÓN DE BLOQUES  (debe coincidir SIEMPRE con VIDEOS.md)
+   - videos: lista fija [{titulo, archivo}] -> la URL se construye con BASE.
+   - resto: true  -> el bloque muestra automáticamente los archivos de la
+     release que NO estén en ningún bloque con lista fija (útil mientras
+     no tengamos los nombres anotados en VIDEOS.md).
+   ===================================================================== */
+const REPO = "igorhermoso1/Video-juritecnia";
+const TAG  = "v1.0";
+const BASE = `https://github.com/${REPO}/releases/download/${TAG}/`;
+
+const BLOQUES = [
+  {
+    id: 1, num: "1", titulo: "Bloque 1",
+    descripcion: "Primeras grabaciones del curso.",
+    videos: [
+      {titulo: "Boceto general",     archivo: "boceto_general.mp4"},
+      {titulo: "Corrección Pokédex", archivo: "correccion_pokedex.mp4"},
+      {titulo: "Cuarto ejercicio",   archivo: "Cuarto.ejercicio.mp4"},
+      {titulo: "Popurri",            archivo: "Popurri.mp4"},
+      {titulo: "Primer ejercicio",   archivo: "primerEjercicio.mp4"}
+    ]
+  },
+  {
+    id: 2, num: "F", titulo: "Bloque Formularios",
+    descripcion: "Todo lo que hay que saber de formularios.",
+    videos: [
+      {titulo: "Formularios, parte 1",   archivo: "Formularios_parte1.mp4"},
+      {titulo: "Formularios, parte 2",   archivo: "Formularios_parte2.mp4"},
+      {titulo: "Formularios 3",          archivo: "Formularios_3.mp4"},
+      {titulo: "Formularios, corrección", archivo: "Formularios_correccion.mp4"},
+      {titulo: "Extras de formularios",  archivo: "Extras_formu.mp4"}
+    ]
+  }
+];
+
+const EXT = /\.(mp4|m4v|webm|mov|mkv|ogv)$/i;
+const limpiar = n => decodeURIComponent(n).replace(EXT,"").replace(/[_.]+/g," ").replace(/\s+/g," ").trim();
+const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fijos = new Set(BLOQUES.flatMap(b => b.videos.map(v => v.archivo)));
+
+let relCache = null;
+async function assetsRelease(){
+  if (!relCache){
+    const r = await fetch(`https://api.github.com/repos/${REPO}/releases/tags/${TAG}`);
+    if (!r.ok) throw new Error(r.status);
+    relCache = await r.json();
+  }
+  return (relCache.assets||[]).filter(a => EXT.test(a.name) || (a.content_type||"").startsWith("video"));
+}
+async function cargar(b){
+  if (b.videos.length) return b.videos.map(v => ({titulo:v.titulo, url:BASE+encodeURIComponent(v.archivo)}));
+  if (!b.resto) return [];
+  const as = await assetsRelease();
+  return as.filter(a => !fijos.has(a.name))
+           .sort((x,y)=>x.name.localeCompare(y.name,"es",{numeric:true}))
+           .map(a => ({titulo:limpiar(a.name), url:a.browser_download_url}));
+}
+
+const GOTEO = `<svg class="goteo" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true"><path fill="#FDB927" d="M0 0h1000v10c-20 0-20 22-32 22s-12-22-30-22-18 14-26 14-8-14-24-14-20 30-34 30-14-30-30-30-12 18-28 18-14-12-34-12-16 20-30 20-14-20-34-20-18 12-30 12-12-24-30-24-14 16-30 16-16-18-34-18-12 28-28 28-14-28-34-28-14 12-30 12-14-14-34-14-14 24-30 24-16-24-34-24-12 18-30 18-14-18-30-18-18 22-32 22-12-22-30-22-16 14-34 14-14-16-30-16-16 26-30 26-14-26-32-26-14 14-30 14-16-12-32-12-14 20-30 20-14-20-34-20-14 12-30 12z"/></svg>`;
+
+function abrir(id, abierto){
+  const h=document.getElementById("head-"+id), g=document.getElementById("grid-"+id);
+  if(!h||!g) return;
+  const v = abierto===undefined ? g.hidden : abierto;
+  g.hidden = !v; h.setAttribute("aria-expanded", String(v));
+}
+function ponerVideo(btn){
+  document.querySelectorAll("video").forEach(v=>v.pause());
+  const v=document.createElement("video");
+  v.controls=true; v.autoplay=true; v.playsInline=true; v.preload="auto"; v.src=btn.dataset.url;
+  v.addEventListener("error",()=>{ v.replaceWith(btn); btn.querySelector(".lbl").textContent="No se pudo cargar. Pulsa para reintentar o usa Descargar"; });
+  btn.replaceWith(v);
+}
+function pintar(){
+  const main = document.getElementById("bloques"), idx = document.getElementById("indice");
+  BLOQUES.forEach(b => {
+    idx.insertAdjacentHTML("beforeend", `<a href="#bloque-${b.id}" data-b="${b.id}">${esc(b.titulo)}</a>`);
+    main.insertAdjacentHTML("beforeend", `
+      <section class="bloque" id="bloque-${b.id}">
+        ${GOTEO}
+        <div class="bhead" id="head-${b.id}" role="button" tabindex="0" aria-expanded="false" aria-controls="grid-${b.id}">
+          <div class="num ${b.num.length>1?"txt":""}" aria-hidden="true">${esc(b.num)}</div>
+          <div><h2>${esc(b.titulo)}</h2><p>${esc(b.descripcion||"")}</p></div>
+          <div class="cuenta" id="cuenta-${b.id}"></div>
+          <span class="chev" aria-hidden="true"></span>
+        </div>
+        <div class="grid" id="grid-${b.id}" hidden><div class="msg">Cargando lista…</div></div>
+      </section>`);
+    const h=document.getElementById("head-"+b.id), g=document.getElementById("grid-"+b.id);
+    h.addEventListener("click",()=>abrir(b.id));
+    h.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();abrir(b.id);} });
+    g.addEventListener("click",e=>{ const p=e.target.closest(".poster"); if(p) ponerVideo(p); });
+    cargar(b).then(vs => {
+      document.getElementById("cuenta-"+b.id).textContent = vs.length + (vs.length===1?" video":" videos");
+      if (!vs.length){ g.innerHTML = `<div class="msg">Todavía no hay videos en este bloque.</div>`; return; }
+      g.innerHTML = vs.map((v,i) => `
+        <article class="card">
+          <div class="screen">
+            <span class="rec">REC</span>
+            <button class="poster" data-url="${esc(v.url)}" aria-label="Reproducir ${esc(v.titulo)}"><span class="poster-in"><span class="play"></span><span class="lbl">Dar al play</span></span></button>
+            <span class="n" aria-hidden="true">${i+1}</span>
+          </div>
+          <div class="cbody">
+            <h3>${esc(v.titulo)}</h3>
+            <a class="dl" href="${esc(v.url)}" download>Descargar video</a>
+          </div>
+        </article>`).join("");
+    }).catch(() => { g.innerHTML = `<div class="msg">No se pudo cargar la lista. Recarga la página en un momento.</div>`; });
+  });
+  idx.addEventListener("click",e=>{ const a=e.target.closest("a[data-b]"); if(a) abrir(+a.dataset.b,true); });
+  const m=location.hash.match(/^#bloque-(\d+)$/); if(m) abrir(+m[1],true);
+}
+pintar();
+</script>
+</body>
+</html>
