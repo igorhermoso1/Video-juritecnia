@@ -4,244 +4,387 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Videoteca Igor teechah</title>
+<meta name="description" content="Igor-Movies: todas las clases grabadas del curso de desarrollo web de Juritecnia, ordenadas por bloques.">
 <link rel="icon" href="logo.webp">
+<!-- Los videos viven en GitHub Releases: abrimos ya la conexión con los dos servidores que los sirven -->
+<link rel="preconnect" href="https://github.com">
+<link rel="preconnect" href="https://release-assets.githubusercontent.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Barlow+Condensed:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Barlow+Condensed:wght@500;700;800&family=Bungee&display=swap" rel="stylesheet">
 <style>
+/* ===== Paleta Lakers + calle ===== */
 :root{
-  --purple:#552583; --purple-d:#2a0f47; --gold:#FDB927; --yellow:#FFD60A; --ink:#0b0810; --paper:#f5efe0;
+  --purple:#552583; --purple-d:#2a0f47; --gold:#FDB927; --yellow:#FFD60A; --ink:#0b0810; --paper:#f5efe0; --red:#ff3b30;
   --marker:'Permanent Marker','Marker Felt',Impact,sans-serif;
+  --block:'Bungee',Impact,sans-serif;
   --body:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{
   margin:0;color:var(--paper);font-family:var(--body);font-size:1.15rem;line-height:1.4;
   background:
-    radial-gradient(circle at 15% 8%,rgba(85,37,131,.65) 0,transparent 45%),
-    radial-gradient(circle at 90% 55%,rgba(253,185,39,.10) 0,transparent 40%),
+    radial-gradient(circle at 12% 6%,rgba(85,37,131,.7) 0,transparent 42%),
+    radial-gradient(circle at 92% 40%,rgba(253,185,39,.12) 0,transparent 38%),
     radial-gradient(rgba(255,255,255,.05) 1.2px,transparent 1.4px) 0 0/14px 14px,
-    repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 3px,transparent 3px 7px),
     var(--ink);
 }
 a{color:inherit}
+button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* Cinta de precaución */
-.cinta{
-  background:repeating-linear-gradient(-45deg,var(--gold) 0 22px,var(--ink) 22px 44px);
-  height:16px;border-bottom:3px solid var(--ink);
-}
-.ticker{background:var(--gold);color:var(--ink);overflow:hidden;white-space:nowrap;font-family:var(--marker);font-size:1.15rem;border-block:3px solid var(--ink);transform:rotate(-1deg);margin:.6rem -1rem 0}
-.ticker span{display:inline-block;padding:.25rem 0;animation:marq 28s linear infinite}
+/* ===== Barra superior fija ===== */
+.barra{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:1rem;padding:.6rem 1.2rem;background:rgba(11,8,16,.92);backdrop-filter:blur(8px);border-bottom:3px solid var(--gold)}
+.marca{font-family:var(--block);font-size:1.05rem;color:var(--yellow);text-decoration:none;white-space:nowrap;text-shadow:2px 2px 0 var(--purple)}
+.buscar{flex:1;max-width:340px;margin-left:auto;position:relative}
+.buscar input{width:100%;font:700 1.05rem var(--body);padding:.45rem .8rem .45rem 2.2rem;background:var(--purple-d);color:var(--paper);border:2px solid var(--gold);border-radius:999px}
+.buscar input::placeholder{color:#b9a6d6}
+.buscar::before{content:"";position:absolute;left:.85rem;top:50%;width:.7rem;height:.7rem;border:2px solid var(--gold);border-radius:50%;transform:translateY(-60%)}
+.btn{display:inline-block;text-decoration:none;font-family:var(--marker);font-size:1.1rem;background:var(--gold);color:var(--purple-d);padding:.45rem 1.1rem;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--purple);transform:rotate(-1deg);transition:transform .15s,box-shadow .15s;white-space:nowrap;cursor:pointer}
+.btn:hover{transform:translate(3px,3px) rotate(-1deg);box-shadow:2px 2px 0 var(--purple)}
+
+/* ===== Cabecera: la tele ===== */
+.cinta{background:repeating-linear-gradient(-45deg,var(--gold) 0 22px,var(--ink) 22px 44px);height:14px}
+header{max-width:1180px;margin:0 auto;padding:2.6rem 1.2rem 1rem}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center}
+.tag{font-family:var(--marker);color:var(--gold);transform:rotate(-3deg);display:inline-block;margin:0 0 .8rem;font-size:1.1rem;border:2px solid var(--gold);padding:.1rem .7rem}
+h1{font-family:var(--marker);font-weight:400;margin:0;line-height:.95;font-size:clamp(2.8rem,7.5vw,5.6rem);color:var(--yellow);text-shadow:4px 4px 0 var(--purple),8px 8px 0 #000;transform:rotate(-2deg)}
+h1 em{color:var(--paper);display:inline-block;transform:skewX(-8deg)}
+.sub{max-width:34rem;margin:1.5rem 0 1.2rem;font-size:1.3rem;color:#eadfc4}
+.stats{display:flex;flex-wrap:wrap;gap:.8rem;margin:0 0 1.5rem;padding:0;list-style:none}
+.stats li{font-family:var(--block);font-size:.95rem;background:var(--paper);color:var(--ink);padding:.35rem .8rem;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--purple);transform:rotate(var(--r))}
+.stats li:nth-child(1){--r:-2deg}.stats li:nth-child(2){--r:1.5deg;background:var(--yellow)}.stats li:nth-child(3){--r:-1deg}
+.stats b{font-size:1.25rem}
+.seguir{display:none;align-items:center;gap:.9rem;padding:.7rem 1rem;max-width:34rem;background:var(--purple);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--gold);cursor:pointer;text-align:left;width:100%}
+.seguir.on{display:flex}
+.seguir .mini-play{flex:none;width:44px;height:44px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink);position:relative}
+.seguir .mini-play::after{content:"";position:absolute;left:15px;top:10px;border-left:15px solid var(--ink);border-block:9px solid transparent}
+.seguir small{display:block;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-size:.85rem}
+.seguir strong{font-family:var(--marker);font-weight:400;font-size:1.25rem}
+
+.tele{position:relative;padding:22px 22px 46px;background:linear-gradient(160deg,#3a1b5e,#1a0930);border:4px solid var(--ink);border-radius:28px;box-shadow:10px 10px 0 var(--gold),inset 0 0 0 3px rgba(253,185,39,.35);transform:rotate(1.5deg)}
+.tele::before,.tele::after{content:"";position:absolute;bottom:12px;width:22px;height:22px;border-radius:50%;background:var(--gold);border:3px solid var(--ink)}
+.tele::before{right:24px}.tele::after{right:56px;background:var(--purple)}
+.pantalla{position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;border:4px solid var(--ink);background:radial-gradient(circle at 50% 50%,#2c8a3c 0,#0f3a17 100%);display:grid;place-items:center}
+.pantalla img{width:92%;height:auto;filter:drop-shadow(0 6px 0 rgba(0,0,0,.4));animation:flota 5s ease-in-out infinite}
+.pantalla::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 2px,transparent 2px 4px);pointer-events:none}
+.onair{position:absolute;left:24px;bottom:12px;font-family:var(--block);font-size:.8rem;color:var(--red);letter-spacing:.08em}
+.onair::before{content:"";display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--red);margin-right:.4em;animation:parpadeo 1.2s steps(1) infinite}
+.antena{position:absolute;top:-46px;left:50%;width:120px;height:50px;transform:translateX(-50%)}
+.antena::before,.antena::after{content:"";position:absolute;bottom:0;width:4px;height:58px;background:var(--ink);transform-origin:bottom}
+.antena::before{left:40%;transform:rotate(-28deg)}.antena::after{right:40%;transform:rotate(28deg)}
+@keyframes flota{50%{transform:translateY(-6px) rotate(-1deg)}}
+@keyframes parpadeo{50%{opacity:0}}
+
+.ticker{background:var(--gold);color:var(--ink);overflow:hidden;white-space:nowrap;font-family:var(--marker);font-size:1.15rem;border-block:3px solid var(--ink);transform:rotate(-1deg);margin:2.4rem -1.2rem 0}
+.ticker span{display:inline-block;padding:.25rem 0;animation:marq 30s linear infinite}
 @keyframes marq{to{transform:translateX(-50%)}}
 
-/* Cabecera */
-header{max-width:1150px;margin:0 auto;padding:2rem 1.2rem 1rem}
-.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:1.5rem;align-items:center}
-.tag{font-family:var(--marker);color:var(--gold);transform:rotate(-3deg);display:inline-block;margin:0 0 .6rem;font-size:1.15rem;border:2px solid var(--gold);padding:.1rem .7rem}
-h1{
-  font-family:var(--marker);font-weight:400;margin:0;line-height:.95;font-size:clamp(2.8rem,8vw,6rem);
-  color:var(--yellow);text-shadow:4px 4px 0 var(--purple),8px 8px 0 var(--ink);transform:rotate(-2deg);
-}
-h1 em{font-style:italic;color:var(--paper);display:inline-block;transform:skewX(-8deg);text-shadow:4px 4px 0 var(--purple),8px 8px 0 var(--ink)}
-.logo{width:100%;height:auto;transform:rotate(2deg);filter:drop-shadow(0 10px 0 rgba(0,0,0,.45)) drop-shadow(0 0 28px rgba(85,37,131,.9))}
-.sub{max-width:32rem;margin:1.6rem 0 1.3rem;font-size:1.35rem;color:#eadfc4}
-.btn{
-  display:inline-block;text-decoration:none;font-family:var(--marker);font-size:1.25rem;background:var(--gold);color:var(--purple-d);
-  padding:.7rem 1.5rem;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--purple);transition:transform .15s,box-shadow .15s;transform:rotate(-1deg);
-}
-.btn:hover{transform:translate(3px,3px) rotate(-1deg);box-shadow:3px 3px 0 var(--purple)}
-nav{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.6rem}
-nav a{text-decoration:none;font-weight:800;font-size:1.1rem;padding:.25rem .9rem;border:2px dashed var(--gold);color:var(--gold)}
-nav a:hover{background:var(--gold);color:var(--ink)}
+/* ===== Canales (bloques) ===== */
+main{max-width:1180px;margin:0 auto;padding:1rem 1.2rem 4rem}
+.canales{display:flex;gap:.7rem;flex-wrap:wrap;margin:1.5rem 0 0}
+.canales a{text-decoration:none;font-weight:800;font-size:1.1rem;padding:.25rem .9rem;border:2px dashed var(--gold);color:var(--gold)}
+.canales a:hover{background:var(--gold);color:var(--ink)}
+.canal{margin-top:3.5rem}
+.goteo{display:block;width:100%;height:42px;margin-bottom:-2px}
+.canal summary{list-style:none;display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;background:var(--purple);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--gold);padding:1rem 4.4rem 1rem 1.4rem;transform:rotate(-.6deg);cursor:pointer;position:relative}
+.canal summary::-webkit-details-marker{display:none}
+.canal:nth-of-type(even) summary{background:var(--purple-d);transform:rotate(.6deg)}
+.canal summary:hover{filter:brightness(1.12)}
+.num{font-family:var(--block);font-size:clamp(3.4rem,10vw,5.6rem);line-height:.9;color:var(--yellow);text-shadow:5px 5px 0 var(--ink)}
+.num small{display:block;font-family:var(--body);font-weight:800;font-size:.9rem;letter-spacing:.2em;text-shadow:none;color:var(--gold)}
+.canal h2{font-family:var(--marker);font-weight:400;font-size:clamp(1.8rem,5vw,2.8rem);margin:0;color:var(--paper)}
+.canal summary p{margin:.15rem 0 0;color:#d9c9ee}
+.cuenta{margin-left:auto;font-family:var(--marker);background:var(--ink);color:var(--gold);padding:.3rem .9rem;border:2px solid var(--gold);transform:rotate(3deg);text-align:center;line-height:1.15}
+.cuenta small{display:block;font-family:var(--body);font-weight:700;color:var(--paper);font-size:.9rem}
+.chev{position:absolute;right:1.3rem;top:50%;margin-top:-10px;border-inline:14px solid transparent;border-top:20px solid var(--yellow);filter:drop-shadow(3px 3px 0 var(--ink));transition:transform .25s}
+.canal[open] .chev{transform:rotate(180deg)}
 
-/* Bloques */
-main{max-width:1150px;margin:0 auto;padding:0 1.2rem 4rem}
-.bloque{margin-top:4rem;position:relative}
-.goteo{display:block;width:100%;height:46px;margin-bottom:-2px}
-.bhead{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;background:var(--purple);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--gold);padding:1rem 1.4rem;transform:rotate(-.6deg)}
-.bloque:nth-of-type(even) .bhead{background:var(--purple-d);transform:rotate(.6deg)}
-.num{font-family:var(--marker);font-size:clamp(4.5rem,13vw,7.5rem);line-height:.9;color:var(--yellow);text-shadow:5px 5px 0 var(--ink)}
-.num.txt{font-size:clamp(2.4rem,8vw,4.2rem);line-height:1}
-.bhead h2{font-family:var(--marker);font-weight:400;font-size:clamp(1.8rem,5vw,3rem);margin:0;color:var(--paper)}
-.bhead p{margin:.2rem 0 0;color:#d9c9ee}
-.cuenta{margin-left:auto;font-family:var(--marker);background:var(--ink);color:var(--gold);padding:.3rem .9rem;border:2px solid var(--gold);transform:rotate(3deg)}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:2.4rem 2rem;margin-top:2.4rem}
-.card{position:relative;background:var(--purple-d);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--gold);transform:rotate(var(--r,0deg));transition:transform .2s}
-.card:nth-child(3n+1){--r:-.8deg}.card:nth-child(3n+2){--r:.7deg}.card:nth-child(3n){--r:-.3deg}
-.card:hover{transform:rotate(0) translateY(-4px)}
-.card::before,.card::after{content:"";position:absolute;top:-14px;width:78px;height:24px;background:rgba(253,185,39,.85);border:1px solid rgba(0,0,0,.35);z-index:2}
-.card::before{left:-18px;transform:rotate(-38deg)}
-.card::after{right:-18px;transform:rotate(38deg)}
-.screen{position:relative;border-bottom:3px solid var(--ink);background:#000}
-video{width:100%;aspect-ratio:16/9;display:block;background:radial-gradient(circle,var(--purple) 0,#000 80%)}
-.rec{position:absolute;top:8px;left:8px;font-family:var(--marker);font-size:.95rem;background:var(--ink);color:var(--yellow);padding:.05rem .6rem;border:2px solid var(--yellow);pointer-events:none;z-index:1}
-.rec::before{content:"";display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#ff3b30;margin-right:.4em}
-.n{position:absolute;right:-12px;bottom:-22px;width:54px;height:54px;border-radius:50%;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);display:grid;place-items:center;font-family:var(--marker);font-size:1.7rem;transform:rotate(-10deg);z-index:2;box-shadow:3px 3px 0 var(--purple)}
-.cbody{padding:1rem 1.1rem 1.1rem;display:flex;flex-direction:column;gap:.6rem}
-.cbody h3{margin:0;font-family:var(--marker);font-weight:400;font-size:1.55rem;line-height:1.1;color:var(--yellow);padding-right:2.6rem}
-.dl{align-self:flex-start;font-weight:800;font-size:1.02rem;color:var(--ink);background:var(--gold);text-decoration:none;padding:.15rem .8rem;border:2px solid var(--ink)}
+/* ===== Cintas VHS (tarjetas) ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:2.4rem 2rem;margin-top:2.6rem}
+.cinta-vhs{position:relative;background:#16101f;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--gold);transform:rotate(var(--r,0deg));transition:transform .2s,box-shadow .2s}
+.cinta-vhs:nth-child(3n+1){--r:-.8deg}.cinta-vhs:nth-child(3n+2){--r:.7deg}.cinta-vhs:nth-child(3n){--r:-.3deg}
+.cinta-vhs:hover,.cinta-vhs:focus-within{transform:rotate(0) translateY(-5px);box-shadow:12px 12px 0 var(--gold)}
+.cinta-vhs::before{content:"";position:absolute;top:-13px;left:50%;width:84px;height:24px;margin-left:-42px;background:rgba(253,185,39,.85);border:1px solid rgba(0,0,0,.35);transform:rotate(-3deg);z-index:2}
+.ver{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;text-align:left}
+.ventana{position:relative;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;border-bottom:3px solid var(--ink);
+  background:radial-gradient(circle at 50% 45%,var(--c1) 0,var(--purple-d) 60%,#000 100%)}
+.ventana::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 6px,transparent 6px 14px)}
+.rollo{position:absolute;top:50%;width:64px;height:64px;margin-top:-32px;border-radius:50%;background:repeating-radial-gradient(circle,#222 0 3px,#111 3px 6px);border:3px solid var(--ink);animation:gira 4s linear infinite paused}
+.rollo.i{left:12%}.rollo.d{right:12%}
+.cinta-vhs:hover .rollo,.cinta-vhs:focus-within .rollo{animation-play-state:running}
+@keyframes gira{to{transform:rotate(360deg)}}
+.play{position:relative;z-index:1;width:72px;height:72px;border-radius:50%;background:var(--yellow);border:4px solid var(--ink);box-shadow:5px 5px 0 var(--gold);transition:transform .15s}
+.play::after{content:"";position:absolute;left:26px;top:16px;border-left:25px solid var(--ink);border-block:16px solid transparent}
+.ver:hover .play,.ver:focus-visible .play{transform:scale(1.12) rotate(-6deg)}
+.rec{position:absolute;top:8px;left:8px;z-index:1;font-family:var(--block);font-size:.75rem;background:var(--ink);color:var(--yellow);padding:.1rem .5rem;border:2px solid var(--yellow)}
+.rec::before{content:"";display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--red);margin-right:.4em}
+.dur{position:absolute;right:8px;bottom:8px;z-index:1;font:800 1rem var(--body);background:rgba(0,0,0,.8);color:var(--paper);padding:.05rem .45rem;border-radius:4px}
+.visto{position:absolute;left:8px;bottom:8px;z-index:1;font-family:var(--marker);font-size:.95rem;background:var(--gold);color:var(--ink);padding:0 .5rem;transform:rotate(-6deg);border:2px solid var(--ink)}
+.barra-v{height:6px;background:#2d2238}
+.barra-v i{display:block;height:100%;width:var(--p,0%);background:var(--red)}
+.etiqueta{margin:.9rem .9rem 0;padding:.6rem .8rem;background:var(--paper);color:var(--ink);border:2px solid var(--ink);background-image:repeating-linear-gradient(0deg,transparent 0 23px,rgba(85,37,131,.18) 23px 24px);position:relative}
+.etiqueta h3{margin:0;font-family:var(--marker);font-weight:400;font-size:1.4rem;line-height:1.15;padding-right:2.6rem}
+.n{position:absolute;right:-14px;top:-18px;width:50px;height:50px;border-radius:50%;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);display:grid;place-items:center;font-family:var(--block);font-size:1.3rem;transform:rotate(-10deg);box-shadow:3px 3px 0 var(--purple)}
+.pie{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.7rem .9rem .9rem}
+.pie span{color:#b9a6d6;font-weight:700}
+.dl{font-weight:800;font-size:1rem;color:var(--ink);background:var(--gold);text-decoration:none;padding:.1rem .7rem;border:2px solid var(--ink)}
 .dl:hover{background:var(--paper)}
 .msg{grid-column:1/-1;padding:1.3rem;border:3px dashed var(--gold);background:rgba(85,37,131,.35);font-size:1.2rem}
+[hidden]{display:none!important}
+
+/* ===== Reproductor: la pantalla grande ===== */
+dialog{width:min(1200px,96vw);max-height:96vh;padding:0;border:4px solid var(--ink);background:var(--purple-d);color:var(--paper);box-shadow:12px 12px 0 var(--gold);overflow:auto}
+dialog::backdrop{background:rgba(11,8,16,.88);backdrop-filter:blur(3px)}
+.p-top{display:flex;align-items:center;gap:1rem;padding:.7rem 1rem;background:var(--purple);border-bottom:3px solid var(--ink)}
+.p-top h2{margin:0;font-family:var(--marker);font-weight:400;font-size:clamp(1.2rem,3vw,1.7rem);line-height:1.1}
+.p-top small{display:block;color:var(--gold);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem}
+.cerrar{margin-left:auto;flex:none;width:44px;height:44px;border:3px solid var(--ink);background:var(--yellow);color:var(--ink);font:400 1.5rem var(--block);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.escena{position:relative;background:#000;aspect-ratio:16/9;max-height:72vh;margin:auto}
+.escena video{position:absolute;inset:0;width:100%;height:100%;background:#000}
+.sintonia{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:.8rem;text-align:center;padding:1rem;font-family:var(--marker);font-size:1.4rem;color:var(--yellow);pointer-events:none;
+  background:repeating-radial-gradient(circle at 30% 40%,rgba(255,255,255,.08) 0 1px,transparent 1px 3px),radial-gradient(circle,var(--purple) 0,#000 75%);animation:ruido .25s steps(3) infinite}
+.sintonia small{font-family:var(--body);font-size:1.05rem;color:var(--paper)}
+.sintonia button,.sintonia a{pointer-events:auto}
+@keyframes ruido{33%{background-position:3px 2px,0 0}66%{background-position:-2px 3px,0 0}}
+.p-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;padding:.8rem 1rem}
+.p-ctrl button{font-weight:800;font-size:1rem;padding:.3rem .8rem;border:2px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer}
+.p-ctrl button:hover,.p-ctrl button[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
+.p-ctrl button:disabled{opacity:.35;cursor:not-allowed}
+.p-ctrl .sep{flex:1}
+.p-ctrl .lbl{color:#b9a6d6;font-weight:700}
+
 footer{text-align:center;padding:2.4rem 1rem 3rem;font-family:var(--marker);color:var(--gold);font-size:1.3rem}
 footer em{color:var(--paper)}
-@media (max-width:760px){.hero{grid-template-columns:1fr}.logo{max-width:420px;margin:0 auto}.cuenta{margin-left:0}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
-/* Bloques desplegables + carga bajo demanda */
-.bhead{cursor:pointer;user-select:none;position:relative;padding-right:4.2rem}
-.bhead:hover{filter:brightness(1.12)}
-.chev{position:absolute;right:1.2rem;top:50%;width:0;height:0;margin-top:-10px;border-left:14px solid transparent;border-right:14px solid transparent;border-top:20px solid var(--yellow);filter:drop-shadow(3px 3px 0 var(--ink));transition:transform .25s}
-.bhead[aria-expanded="true"] .chev{transform:rotate(180deg)}
-.grid[hidden]{display:none}
-.poster{display:grid;place-items:center;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;color:var(--paper);font-family:var(--marker);font-size:1.1rem;
-  background:radial-gradient(circle at 50% 45%,var(--purple) 0,var(--purple-d) 55%,#000 100%),repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 6px,transparent 6px 14px)}
-.poster .play{display:block;width:76px;height:76px;border-radius:50%;background:var(--yellow);border:4px solid var(--ink);box-shadow:5px 5px 0 var(--gold);position:relative;transition:transform .15s}
-.poster .play::after{content:"";position:absolute;left:28px;top:17px;border-left:26px solid var(--ink);border-top:16px solid transparent;border-bottom:16px solid transparent}
-.poster:hover .play{transform:scale(1.1) rotate(-6deg)}
-.poster .lbl{display:block;margin-top:.7rem}
-.poster-in{display:flex;flex-direction:column;align-items:center}
+@media (max-width:820px){.hero{grid-template-columns:1fr}.tele{max-width:460px;margin:2.5rem auto 0;width:100%}}
+@media (max-width:620px){.barra{flex-wrap:wrap;gap:.6rem}.buscar{order:3;max-width:none;flex-basis:100%}.btn{font-size:.95rem;margin-left:auto}.cuenta{margin-left:0}.grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<div class="cinta" aria-hidden="true"></div>
+<div class="barra">
+  <a class="marca" href="#arriba">IGOR-MOVIES</a>
+  <label class="buscar"><span class="vh">Buscar una clase</span><input id="q" type="search" placeholder="Busca una clase…" autocomplete="off"></label>
+  <a class="btn" href="https://igorhermoso1.github.io/Formaci-n_Juritecnia/" target="_blank" rel="noopener">Plataforma de alumnos</a>
+</div>
+<div class="cinta" aria-hidden="true" id="arriba"></div>
 
 <header>
   <div class="hero">
     <div>
       <p class="tag">Grabaciones de clase</p>
       <h1>Videoteca<br>Igor <em>teechah</em></h1>
-      <p class="sub">Aquí están todas las clases grabadas, ordenadas por bloques. Dale al play y a estudiar.</p>
-      <a class="btn" href="https://igorhermoso1.github.io/Formaci-n_Juritecnia/" target="_blank" rel="noopener">Ir a la plataforma de alumnos</a>
-      <nav id="indice" aria-label="Bloques"></nav>
+      <p class="sub">Todas las clases grabadas, ordenadas por canales. Elige una cinta, dale al play y, si lo dejas a medias, la tele se acuerda de por dónde ibas.</p>
+      <ul class="stats" id="stats"></ul>
+      <button class="seguir" id="seguir" type="button"><span class="mini-play"></span><span><small>Sigue viendo</small><strong id="seguirT"></strong></span></button>
+      <nav class="canales" id="indice" aria-label="Canales"></nav>
     </div>
-    <img class="logo" src="logo.webp" alt="Igor-Movies, la tele dictatorial bro">
+    <div class="tele">
+      <span class="antena" aria-hidden="true"></span>
+      <div class="pantalla"><img src="logo.webp" alt="Igor-Movies, la tele dictatorial bro" width="900" height="460"></div>
+      <span class="onair" aria-hidden="true">ON AIR</span>
+    </div>
   </div>
   <div class="ticker" aria-hidden="true"><span>IGOR-MOVIES &#9733; LA TELE DICTATORIAL BRO &#9733; DALE AL PLAY &#9733; IGOR-MOVIES &#9733; LA TELE DICTATORIAL BRO &#9733; DALE AL PLAY &#9733; IGOR-MOVIES &#9733; LA TELE DICTATORIAL BRO &#9733; DALE AL PLAY &#9733; IGOR-MOVIES &#9733; LA TELE DICTATORIAL BRO &#9733; DALE AL PLAY &#9733;</span></div>
 </header>
 
 <main id="bloques"></main>
+<p class="msg" id="nada" hidden style="max-width:1180px;margin:0 auto 3rem">Ninguna clase coincide con tu búsqueda.</p>
+
+<dialog id="player" aria-labelledby="pTitulo">
+  <div class="p-top">
+    <div><small id="pCanal"></small><h2 id="pTitulo"></h2></div>
+    <button class="cerrar" type="button" id="cerrar" aria-label="Cerrar">×</button>
+  </div>
+  <div class="escena" id="escena">
+    <div class="sintonia" id="sintonia"></div>
+  </div>
+  <div class="p-ctrl">
+    <button type="button" id="prev">◀ Anterior</button>
+    <button type="button" id="next">Siguiente ▶</button>
+    <span class="sep"></span>
+    <span class="lbl">Velocidad</span>
+    <span id="vel"></span>
+    <a class="dl" id="pDl" href="#" download>Descargar</a>
+  </div>
+</dialog>
 
 <footer>Igor <em>teechah</em> &#9733; Juritecnia</footer>
 
 <script>
 /* =====================================================================
-   CONFIGURACIÓN DE BLOQUES  (debe coincidir SIEMPRE con VIDEOS.md)
-   - videos: lista fija [{titulo, archivo}] -> la URL se construye con BASE.
-   - resto: true  -> el bloque muestra automáticamente los archivos de la
-     release que NO estén en ningún bloque con lista fija (útil mientras
-     no tengamos los nombres anotados en VIDEOS.md).
+   CANALES (bloques): deben coincidir SIEMPRE con VIDEOS.md
+   Cada video: {titulo, archivo, dur}. dur = duración "m:ss" o "h:mm:ss".
    ===================================================================== */
-const REPO = "igorhermoso1/Video-juritecnia";
-const TAG  = "v1.0";
-const BASE = `https://github.com/${REPO}/releases/download/${TAG}/`;
+const BASE = "https://github.com/igorhermoso1/Video-juritecnia/releases/download/v1.0/";
 
 const BLOQUES = [
   {
-    id: 1, num: "1", titulo: "Bloque 1",
+    id: 1, num: "1", titulo: "Bloque 1", color: "#552583",
     descripcion: "Primeras grabaciones del curso.",
     videos: [
-      {titulo: "Boceto general",     archivo: "boceto_general.mp4"},
-      {titulo: "Corrección Pokédex", archivo: "correccion_pokedex.mp4"},
-      {titulo: "Cuarto ejercicio",   archivo: "Cuarto.ejercicio.mp4"},
-      {titulo: "Popurri",            archivo: "Popurri.mp4"},
-      {titulo: "Primer ejercicio",   archivo: "primerEjercicio.mp4"}
+      {titulo: "Boceto general",     archivo: "boceto_general.mp4",     dur: "37:30"},
+      {titulo: "Corrección Pokédex", archivo: "correccion_pokedex.mp4", dur: "50:59"},
+      {titulo: "Cuarto ejercicio",   archivo: "Cuarto.ejercicio.mp4",   dur: "17:52"},
+      {titulo: "Popurri",            archivo: "Popurri.mp4",            dur: "42:35"},
+      {titulo: "Primer ejercicio",   archivo: "primerEjercicio.mp4",    dur: "10:10"}
     ]
   },
   {
-    id: 2, num: "F", titulo: "Bloque Formularios",
+    id: 2, num: "F", titulo: "Bloque Formularios", color: "#8a5a00",
     descripcion: "Todo lo que hay que saber de formularios.",
     videos: [
-      {titulo: "Formularios, parte 1",   archivo: "Formularios_parte1.mp4"},
-      {titulo: "Formularios, parte 2",   archivo: "Formularios_parte2.mp4"},
-      {titulo: "Formularios 3",          archivo: "Formularios_3.mp4"},
-      {titulo: "Formularios, corrección", archivo: "Formularios_correccion.mp4"},
-      {titulo: "Extras de formularios",  archivo: "Extras_formu.mp4"}
+      {titulo: "Formularios, parte 1",    archivo: "Formularios_parte1.mp4",     dur: "45:15"},
+      {titulo: "Formularios, parte 2",    archivo: "Formularios_parte2.mp4",     dur: "31:33"},
+      {titulo: "Formularios 3",           archivo: "Formularios_3.mp4",          dur: "1:21:03"},
+      {titulo: "Formularios, corrección", archivo: "Formularios_correccion.mp4", dur: "1:31:55"},
+      {titulo: "Extras de formularios",   archivo: "Extras_formu.mp4",           dur: "22:45"}
     ]
   }
 ];
 
-const EXT = /\.(mp4|m4v|webm|mov|mkv|ogv)$/i;
-const limpiar = n => decodeURIComponent(n).replace(EXT,"").replace(/[_.]+/g," ").replace(/\s+/g," ").trim();
+const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const fijos = new Set(BLOQUES.flatMap(b => b.videos.map(v => v.archivo)));
+const seg = d => d.split(":").reduce((a,n)=>a*60+ +n,0);
+const reloj = s => { s=Math.floor(s); const h=Math.floor(s/3600), m=Math.floor(s%3600/60), x=String(s%60).padStart(2,"0"); return h?`${h}:${String(m).padStart(2,"0")}:${x}`:`${m}:${x}`; };
+const url = v => BASE + encodeURIComponent(v.archivo);
+// localStorage puede fallar (modo privado): la página funciona igual, solo sin memoria
+const mem = { get(k){ try{return localStorage.getItem("igm:"+k)}catch(e){return null} }, set(k,v){ try{localStorage.setItem("igm:"+k,v)}catch(e){} } };
+const TODOS = BLOQUES.flatMap(b => b.videos.map((v,i) => Object.assign(v,{b,i})));
 
-let relCache = null;
-async function assetsRelease(){
-  if (!relCache){
-    const r = await fetch(`https://api.github.com/repos/${REPO}/releases/tags/${TAG}`);
-    if (!r.ok) throw new Error(r.status);
-    relCache = await r.json();
-  }
-  return (relCache.assets||[]).filter(a => EXT.test(a.name) || (a.content_type||"").startsWith("video"));
-}
-async function cargar(b){
-  if (b.videos.length) return b.videos.map(v => ({titulo:v.titulo, url:BASE+encodeURIComponent(v.archivo)}));
-  if (!b.resto) return [];
-  const as = await assetsRelease();
-  return as.filter(a => !fijos.has(a.name))
-           .sort((x,y)=>x.name.localeCompare(y.name,"es",{numeric:true}))
-           .map(a => ({titulo:limpiar(a.name), url:a.browser_download_url}));
-}
-
+/* ---------- Pintar canales y cintas ---------- */
 const GOTEO = `<svg class="goteo" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true"><path fill="#FDB927" d="M0 0h1000v10c-20 0-20 22-32 22s-12-22-30-22-18 14-26 14-8-14-24-14-20 30-34 30-14-30-30-30-12 18-28 18-14-12-34-12-16 20-30 20-14-20-34-20-18 12-30 12-12-24-30-24-14 16-30 16-16-18-34-18-12 28-28 28-14-28-34-28-14 12-30 12-14-14-34-14-14 24-30 24-16-24-34-24-12 18-30 18-14-18-30-18-18 22-32 22-12-22-30-22-16 14-34 14-14-16-30-16-16 26-30 26-14-26-32-26-14 14-30 14-16-12-32-12-14 20-30 20-14-20-34-20-14 12-30 12z"/></svg>`;
 
-function abrir(id, abierto){
-  const h=document.getElementById("head-"+id), g=document.getElementById("grid-"+id);
-  if(!h||!g) return;
-  const v = abierto===undefined ? g.hidden : abierto;
-  g.hidden = !v; h.setAttribute("aria-expanded", String(v));
+function cinta(v){
+  const k = v.b.id+"-"+v.i;
+  return `<article class="cinta-vhs" data-k="${k}" data-t="${esc(v.titulo.toLowerCase())}">
+    <button class="ver" type="button" data-k="${k}" aria-label="Ver ${esc(v.titulo)} (${v.dur})">
+      <span class="ventana" style="--c1:${v.b.color}">
+        <span class="rollo i"></span><span class="rollo d"></span>
+        <span class="rec">REC</span><span class="play"></span>
+        <span class="dur">${v.dur}</span><span class="visto" hidden>Visto</span>
+      </span>
+      <span class="barra-v"><i></i></span>
+    </button>
+    <div class="etiqueta"><h3>${esc(v.titulo)}</h3><span class="n" aria-hidden="true">${v.i+1}</span></div>
+    <div class="pie"><span class="estado"></span><a class="dl" href="${url(v)}" download>Descargar</a></div>
+  </article>`;
 }
-function ponerVideo(btn){
-  document.querySelectorAll("video").forEach(v=>v.pause());
-  const v=document.createElement("video");
-  v.controls=true; v.autoplay=true; v.playsInline=true; v.preload="auto"; v.src=btn.dataset.url;
-  v.addEventListener("error",()=>{ v.replaceWith(btn); btn.querySelector(".lbl").textContent="No se pudo cargar. Pulsa para reintentar o usa Descargar"; });
-  btn.replaceWith(v);
+function marcarProgreso(v){
+  const el = document.querySelector(`.cinta-vhs[data-k="${v.b.id}-${v.i}"]`); if(!el) return;
+  const t = +mem.get("t:"+v.archivo)||0, tot = seg(v.dur), p = Math.min(100, t/tot*100), visto = mem.get("v:"+v.archivo)==="1";
+  el.querySelector(".barra-v i").style.setProperty("--p", (visto?100:p)+"%");
+  el.querySelector(".visto").hidden = !visto;
+  el.querySelector(".estado").textContent = visto ? "Vista entera" : t>5 ? "Vas por el "+reloj(t) : "Sin empezar";
 }
 function pintar(){
-  const main = document.getElementById("bloques"), idx = document.getElementById("indice");
+  const main=$("bloques"), idx=$("indice");
   BLOQUES.forEach(b => {
-    idx.insertAdjacentHTML("beforeend", `<a href="#bloque-${b.id}" data-b="${b.id}">${esc(b.titulo)}</a>`);
+    const tot = b.videos.reduce((a,v)=>a+seg(v.dur),0);
+    idx.insertAdjacentHTML("beforeend", `<a href="#canal-${b.id}">Canal ${esc(b.num)} · ${esc(b.titulo)}</a>`);
     main.insertAdjacentHTML("beforeend", `
-      <section class="bloque" id="bloque-${b.id}">
-        ${GOTEO}
-        <div class="bhead" id="head-${b.id}" role="button" tabindex="0" aria-expanded="false" aria-controls="grid-${b.id}">
-          <div class="num ${b.num.length>1?"txt":""}" aria-hidden="true">${esc(b.num)}</div>
+      <details class="canal" id="canal-${b.id}">
+        <summary>${GOTEO.replace('class="goteo"','class="goteo" style="position:absolute;left:-3px;right:-3px;top:-42px;width:calc(100% + 6px)"')}
+          <div class="num" aria-hidden="true"><small>CANAL</small>${esc(b.num)}</div>
           <div><h2>${esc(b.titulo)}</h2><p>${esc(b.descripcion||"")}</p></div>
-          <div class="cuenta" id="cuenta-${b.id}"></div>
+          <div class="cuenta">${b.videos.length} ${b.videos.length===1?"video":"videos"}<small>${reloj(tot)}</small></div>
           <span class="chev" aria-hidden="true"></span>
-        </div>
-        <div class="grid" id="grid-${b.id}" hidden><div class="msg">Cargando lista…</div></div>
-      </section>`);
-    const h=document.getElementById("head-"+b.id), g=document.getElementById("grid-"+b.id);
-    h.addEventListener("click",()=>abrir(b.id));
-    h.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();abrir(b.id);} });
-    g.addEventListener("click",e=>{ const p=e.target.closest(".poster"); if(p) ponerVideo(p); });
-    cargar(b).then(vs => {
-      document.getElementById("cuenta-"+b.id).textContent = vs.length + (vs.length===1?" video":" videos");
-      if (!vs.length){ g.innerHTML = `<div class="msg">Todavía no hay videos en este bloque.</div>`; return; }
-      g.innerHTML = vs.map((v,i) => `
-        <article class="card">
-          <div class="screen">
-            <span class="rec">REC</span>
-            <button class="poster" data-url="${esc(v.url)}" aria-label="Reproducir ${esc(v.titulo)}"><span class="poster-in"><span class="play"></span><span class="lbl">Dar al play</span></span></button>
-            <span class="n" aria-hidden="true">${i+1}</span>
-          </div>
-          <div class="cbody">
-            <h3>${esc(v.titulo)}</h3>
-            <a class="dl" href="${esc(v.url)}" download>Descargar video</a>
-          </div>
-        </article>`).join("");
-    }).catch(() => { g.innerHTML = `<div class="msg">No se pudo cargar la lista. Recarga la página en un momento.</div>`; });
+        </summary>
+        <div class="grid">${b.videos.length ? b.videos.map(cinta).join("") : `<div class="msg">Todavía no hay videos en este canal.</div>`}</div>
+      </details>`);
   });
-  idx.addEventListener("click",e=>{ const a=e.target.closest("a[data-b]"); if(a) abrir(+a.dataset.b,true); });
-  const m=location.hash.match(/^#bloque-(\d+)$/); if(m) abrir(+m[1],true);
+  TODOS.forEach(marcarProgreso);
+  const total = TODOS.reduce((a,v)=>a+seg(v.dur),0);
+  $("stats").innerHTML = `<li><b>${TODOS.length}</b> clases</li><li><b>${Math.floor(total/3600)} h ${Math.round(total%3600/60)} min</b> de tele</li><li><b>${BLOQUES.length}</b> canales</li>`;
+  pintarSeguir();
+  const m = location.hash.match(/^#canal-\d+$/); if(m && $(m[0].slice(1))) $(m[0].slice(1)).open = true;
 }
+function pintarSeguir(){
+  const v = TODOS.find(x => x.archivo===mem.get("last"));
+  const t = v ? +mem.get("t:"+v.archivo)||0 : 0;
+  $("seguir").classList.toggle("on", !!v && t>5 && mem.get("v:"+v.archivo)!=="1");
+  if(v) { $("seguirT").textContent = `${v.titulo} · desde ${reloj(t)}`; $("seguir").onclick = () => abrir(v); }
+}
+
+/* ---------- Precarga: al pasar por encima de una cinta se pide ya el índice del video (moov) ---------- */
+let caliente = null; // un único <video> precargado cada vez, para no gastar datos
+function calentar(v){
+  if (caliente && caliente.dataset.a===v.archivo) return;
+  if (caliente){ caliente.removeAttribute("src"); caliente.load(); }
+  caliente = document.createElement("video");
+  caliente.preload = "metadata"; caliente.dataset.a = v.archivo; caliente.src = url(v);
+}
+
+/* ---------- Reproductor ---------- */
+const VEL = [1,1.25,1.5,1.75,2];
+let actual = null, video = null, guardado = 0;
+$("vel").innerHTML = VEL.map(x=>`<button type="button" data-v="${x}" aria-pressed="false">${x}×</button>`).join(" ");
+
+function sintonia(html){ const s=$("sintonia"); s.hidden=!html; if(html) s.innerHTML=html; }
+function guardar(){
+  if(!video||!actual||!video.duration) return;
+  mem.set("t:"+actual.archivo, Math.floor(video.currentTime));
+  if (video.currentTime/video.duration > .95) mem.set("v:"+actual.archivo,"1");
+  marcarProgreso(actual);
+}
+function abrir(v){
+  guardar(); actual = v; mem.set("last", v.archivo);
+  $("pCanal").textContent = `Canal ${v.b.num} · cinta ${v.i+1} de ${v.b.videos.length} · ${v.dur}`;
+  $("pTitulo").textContent = v.titulo; $("pDl").href = url(v);
+  $("prev").disabled = v.i===0; $("next").disabled = v.i===v.b.videos.length-1;
+  if (video){ video.pause(); video.removeAttribute("src"); video.load(); video.remove(); }
+  calentar(v); video = caliente; caliente = null;   // reutiliza lo ya precargado
+  video.controls = true; video.playsInline = true; video.preload = "auto";
+  video.playbackRate = +mem.get("vel")||1;
+  pintarVel();
+  $("escena").prepend(video);
+  sintonia(`Sintonizando el canal…<small>Las clases largas tardan unos segundos en arrancar la primera vez.</small>`);
+  const desde = +mem.get("t:"+v.archivo)||0;
+  const empezar = () => { if (desde>5 && mem.get("v:"+v.archivo)!=="1" && desde < video.duration-10) video.currentTime = desde; video.play().catch(()=>{}); };
+  if (video.readyState >= 1) empezar(); else video.addEventListener("loadedmetadata", empezar, {once:true});
+  video.addEventListener("playing", () => sintonia(""), {once:true});
+  video.addEventListener("canplay", () => sintonia(""), {once:true});
+  video.addEventListener("waiting", () => sintonia(`Cargando…`));
+  video.addEventListener("playing", () => sintonia(""));
+  const el = video; // los avisos de un video ya cerrado no deben tocar el siguiente
+  el.addEventListener("timeupdate", () => { if (el===video && Math.abs(el.currentTime-guardado) > 5){ guardado = el.currentTime; guardar(); } });
+  el.addEventListener("pause", () => { if (el===video) guardar(); });
+  video.addEventListener("ended", () => { mem.set("v:"+v.archivo,"1"); marcarProgreso(v); });
+  video.addEventListener("error", () => sintonia(`No se pudo cargar este video.<small>Comprueba tu conexión.</small><span><button class="btn" type="button" id="reint">Reintentar</button> <a class="btn" href="${url(v)}" download>Descargar</a></span>`), {once:true});
+  if (!$("player").open) $("player").showModal();
+  video.focus();
+}
+function pintarVel(){ document.querySelectorAll("#vel button").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.v===video.playbackRate))); }
+
+$("vel").addEventListener("click", e => { const b=e.target.closest("button"); if(!b||!video) return; video.playbackRate=+b.dataset.v; mem.set("vel",b.dataset.v); pintarVel(); });
+$("prev").onclick = () => abrir(actual.b.videos[actual.i-1]);
+$("next").onclick = () => abrir(actual.b.videos[actual.i+1]);
+$("cerrar").onclick = () => $("player").close();
+$("sintonia").addEventListener("click", e => { if (e.target.id==="reint") abrir(actual); });
+$("player").addEventListener("close", () => { guardar(); if(video){ video.pause(); video.removeAttribute("src"); video.load(); video.remove(); video=null; } pintarSeguir(); });
+
+/* ---------- Eventos de las cintas y buscador ---------- */
 pintar();
+const porK = k => { const [b,i]=k.split("-"); return BLOQUES.find(x=>x.id===+b).videos[+i]; };
+$("bloques").addEventListener("click", e => { const b=e.target.closest(".ver"); if(b) abrir(porK(b.dataset.k)); });
+let tCal;
+const intento = e => { const c=e.target.closest(".cinta-vhs"); if(!c) return; clearTimeout(tCal); tCal=setTimeout(()=>calentar(porK(c.dataset.k)),150); };
+$("bloques").addEventListener("pointerover", intento);
+$("bloques").addEventListener("focusin", intento);
+$("indice").addEventListener("click", e => { const a=e.target.closest("a"); if(a) $(a.hash.slice(1)).open = true; });
+$("q").addEventListener("input", e => {
+  const q = e.target.value.trim().toLowerCase(); let hay = 0;
+  document.querySelectorAll(".canal").forEach(c => {
+    let n = 0;
+    c.querySelectorAll(".cinta-vhs").forEach(t => { const ok = !q || t.dataset.t.includes(q); t.hidden = !ok; n += ok; });
+    c.hidden = q && !n; if (q && n) c.open = true; hay += n;
+  });
+  $("nada").hidden = !q || hay>0;
+});
 </script>
 </body>
 </html>
