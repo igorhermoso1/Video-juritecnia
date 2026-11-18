@@ -36,9 +36,9 @@ python faststart.py original.mp4 listo.mp4
 
 El script comprueba él mismo que el resultado está bien. Si tienes ffmpeg, es lo mismo que `ffmpeg -i original.mp4 -c copy -movflags +faststart listo.mp4`.
 
-**Estado de los videos ya subidos (2026-11-18):** los 10 tienen el índice al final. Pendiente: pasarlos por `faststart.py` y volver a subirlos con el mismo nombre (la web no cambia).
+**Estado de los videos ya subidos:** los 10 pasaron por `faststart.py` el 2026-11-18 y se volvieron a subir con el mismo nombre. Se comprobaron todos los trozos de cada archivo y, en GitHub, que el índice va delante. Medido en frío desde la web publicada: `Formularios_correccion.mp4` arranca en **4 s** (antes 11,5 s) y salta a cualquier minuto en menos de 1 s. Los segundos que quedan son la descarga del propio índice: 3-5 MB en las clases largas.
 
-Mientras tanto, la web ayuda en dos cosas: se conecta a GitHub nada más abrirse (`preconnect`) y, al pasar el ratón o el foco por una cinta, empieza a descargar su índice. Medido: **0,8 s** de arranque si pasas el ratón un par de segundos antes de pulsar.
+La web ayuda además en dos cosas: se conecta a GitHub nada más abrirse (`preconnect`) y, al pasar el ratón o el foco por una cinta, empieza a descargar su índice.
 
 ---
 
@@ -85,3 +85,4 @@ Mientras tanto, la web ayuda en dos cosas: se conecta a GitHub nada más abrirse
 | 2026-11-18 | Bloque Formularios completado con 5 videos (parte1, parte2, 3, correccion, extras). Total release: 10 videos. |
 | 2026-11-18 | Web: bloques desplegables (cerrados al abrir) y videos con carga bajo demanda (solo se descargan al pulsar play). No cambia el contenido de ningún bloque. |
 | 2026-11-18 | Web rediseñada: «Igor-Movies» como tele (canales y cintas VHS), reproductor grande con anterior/siguiente y velocidad, continuar por donde ibas, buscador, duraciones, precarga del índice al pasar el ratón. Añadido `faststart.py`. No cambia el contenido de ningún bloque. |
+| 2026-11-18 | Los 10 videos pasados por `faststart.py` y vueltos a subir con el mismo nombre (mismo contenido, índice al principio). |
