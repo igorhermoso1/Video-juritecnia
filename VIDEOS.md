@@ -125,7 +125,7 @@ La web ayuda además en dos cosas: se conecta a GitHub nada más abrirse (`preco
 | 14 | Heroes of arroz caldosio | `Heroes_of_arroz_caldosio.mp4` | 1:34:35 | 616 MB | 2026-11-19 |
 | 15 | Repaso intenso | `Repaso_intenso.mp4` | 55:33 | 232 MB | 2026-11-19 |
 
-> Orden propuesto por temas (popover y vídeo, transiciones, transform, proyecto Panoplia, recorte, Heroes y repaso). Pendiente de confirmar por Igor.
+> Orden por temas (popover y vídeo, transiciones, transform, proyecto Panoplia, recorte, Heroes y repaso), confirmado por Igor el 2026-11-19.
 
 ---
 
