@@ -1,6 +1,6 @@
 # Registro de videos: Videoteca Igor teechah
 
-Fuente de verdad de qué video pertenece a qué bloque y en qué orden. **Nunca se mezclan videos entre bloques.**
+Fuente de verdad de qué video pertenece a qué bloque y en qué orden. **Nunca se mezclan videos entre bloques.** Orden de los canales en la web: Bloque 1, Formularios, Bloque 2, Bloque 3.
 `index.html` tiene una sección `BLOQUES` que debe coincidir siempre con este archivo.
 
 - Repositorio: https://github.com/igorhermoso1/Video-juritecnia
@@ -43,16 +43,32 @@ La web ayuda además en dos cosas: se conecta a GitHub nada más abrirse (`preco
 
 ## Bloque 1  (id 1)
 
-- **Origen:** Release `Grabaciones` (v1.0). Los 5 primeros videos subidos.
+- **Origen:** Release `Grabaciones` (v1.0). Los 5 primeros videos subidos; la Corrección Pokédex pasó al Bloque 2 el 2026-11-19.
 - **Estado:** cerrado, salvo que se indique lo contrario.
 
 | Orden | Título en la web | Archivo | Duración | Tamaño | Alta |
 |------:|------------------|---------|---------:|-------:|------|
 | 1 | Boceto general | `boceto_general.mp4` | 37:30 | 191 MB | 2026-11-18 |
-| 2 | Corrección Pokédex | `correccion_pokedex.mp4` | 50:59 | 257 MB | 2026-11-18 |
-| 3 | Cuarto ejercicio | `Cuarto.ejercicio.mp4` | 17:52 | 92.3 MB | 2026-11-18 |
-| 4 | Popurri | `Popurri.mp4` | 42:35 | 164 MB | 2026-11-18 |
-| 5 | Primer ejercicio | `primerEjercicio.mp4` | 10:10 | 36.2 MB | 2026-11-18 |
+| 2 | Cuarto ejercicio | `Cuarto.ejercicio.mp4` | 17:52 | 92.3 MB | 2026-11-18 |
+| 3 | Popurri | `Popurri.mp4` | 42:35 | 164 MB | 2026-11-18 |
+| 4 | Primer ejercicio | `primerEjercicio.mp4` | 10:10 | 36.2 MB | 2026-11-18 |
+
+---
+
+## Bloque Formularios  (id 2)
+
+- **Origen:** Release `Grabaciones` (v1.0). Videos subidos después del Bloque 1.
+- **Estado:** abierto.
+
+| Orden | Título en la web | Archivo | Duración | Tamaño | Alta |
+|------:|------------------|---------|---------:|-------:|------|
+| 1 | Formularios, parte 1 | `Formularios_parte1.mp4` | 45:15 | 162 MB | 2026-11-18 |
+| 2 | Formularios, parte 2 | `Formularios_parte2.mp4` | 31:33 | 147 MB | 2026-11-18 |
+| 3 | Formularios 3 | `Formularios_3.mp4` | 1:21:03 | 337 MB | 2026-11-18 |
+| 4 | Formularios, corrección | `Formularios_correccion.mp4` | 1:31:55 | 417 MB | 2026-11-18 |
+| 5 | Extras de formularios | `Extras_formu.mp4` | 22:45 | 77.4 MB | 2026-11-18 |
+
+> Orden propuesto: parte 1, parte 2, 3, corrección y extras. Pendiente de confirmar por Igor.
 
 ---
 
@@ -80,25 +96,36 @@ La web ayuda además en dos cosas: se conecta a GitHub nada más abrirse (`preco
 | 14 | Flexbox, parte 2 | `flexbox_Parte_2.mp4` | 1:40:52 | 436 MB | 2026-11-19 |
 | 15 | Corrección Flexbox 1 | `Correccion_FlexBox1.mp4` | 45:43 | 180 MB | 2026-11-19 |
 | 16 | Ejercicio «Muerte» 1 | `ejercicioMuerte1.mp4` | 1:27:38 | 429 MB | 2026-11-19 |
+| 17 | Corrección Pokédex | `correccion_pokedex.mp4` | 50:59 | 257 MB | 2026-11-18 |
 
-> Orden propuesto por temas (CSS inicial, anidado, favicon y fuentes, cursores, anclas, fondos, popover, Flexbox, corrección y ejercicio final). Pendiente de confirmar por Igor.
+> Orden 1-16 confirmado por Igor el 2026-11-19. La Corrección Pokédex (venía del Bloque 1) va al final para no mover el orden confirmado.
 
 ---
 
-## Bloque Formularios  (id 2)
+## Bloque 3  (id 4)
 
-- **Origen:** Release `Grabaciones` (v1.0). Videos subidos después del Bloque 1.
+- **Origen:** Release `Grabaciones` (v1.0). 15 videos subidos el 2026-11-19 (copias en `webs/video/`).
 - **Estado:** abierto.
 
-| Orden | Título en la web | Archivo | Duración | Tamaño | Alta |
-|------:|------------------|---------|---------:|-------:|------|
-| 1 | Formularios, parte 1 | `Formularios_parte1.mp4` | 45:15 | 162 MB | 2026-11-18 |
-| 2 | Formularios, parte 2 | `Formularios_parte2.mp4` | 31:33 | 147 MB | 2026-11-18 |
-| 3 | Formularios 3 | `Formularios_3.mp4` | 1:21:03 | 337 MB | 2026-11-18 |
-| 4 | Formularios, corrección | `Formularios_correccion.mp4` | 1:31:55 | 417 MB | 2026-11-18 |
-| 5 | Extras de formularios | `Extras_formu.mp4` | 22:45 | 77.4 MB | 2026-11-18 |
+| Orden | Título en la web | Archivo (release) | Duración | Tamaño | Alta |
+|------:|------------------|-------------------|---------:|-------:|------|
+| 1 | Popover y vídeo, parte 1 | `popover.y.video_1.mp4` (local: `popover y video_1.mp4`) | 46:35 | 176 MB | 2026-11-19 |
+| 2 | Popover y vídeo, parte 2 | `popover.y.video_2.mp4` (local: `popover y video_2.mp4`) | 44:34 | 218 MB | 2026-11-19 |
+| 3 | Vídeo 3: aspect-ratio y object-fit | `popoVideo_3_aspectRatio_object_fit.mp4` | 1:34:57 | 463 MB | 2026-11-19 |
+| 4 | Transiciones, parte 1 | `Transition1.mp4` | 1:47:12 | 475 MB | 2026-11-19 |
+| 5 | Transform, parte 1 | `Transform1Parte.mp4` | 1:44:03 | 444 MB | 2026-11-19 |
+| 6 | Transform, parte 2 | `Transform2Parte.mp4` | 1:32:04 | 439 MB | 2026-11-19 |
+| 7 | Panoplia: transiciones 1 | `Panoplia_transition_1.mp4` | 1:40:53 | 384 MB | 2026-11-19 |
+| 8 | Panoplia: transiciones 2 | `Panoplia_transition_2.mp4` | 1:09:11 | 291 MB | 2026-11-19 |
+| 9 | Panoplia: transiciones 3 | `Panoplia_transition_3.mp4` | 1:46:25 | 579 MB | 2026-11-19 |
+| 10 | Panoplia: transiciones 4 | `Panoplia_transition_4.mp4` | 1:02:07 | 289 MB | 2026-11-19 |
+| 11 | Panoplia: transiciones 5 | `Panoplia_transition_5.mp4` | 29:39 | 137 MB | 2026-11-19 |
+| 12 | Panoplia: transiciones 6 | `Panoplia_transition6.mp4` | 1:43:10 | 519 MB | 2026-11-19 |
+| 13 | Instrucciones de recorte | `Intrucciones_recorte.mp4` | 23:58 | 172 MB | 2026-11-19 |
+| 14 | Heroes of arroz caldosio | `Heroes_of_arroz_caldosio.mp4` | 1:34:35 | 616 MB | 2026-11-19 |
+| 15 | Repaso intenso | `Repaso_intenso.mp4` | 55:33 | 232 MB | 2026-11-19 |
 
-> Orden propuesto: parte 1, parte 2, 3, corrección y extras. Pendiente de confirmar por Igor.
+> Orden propuesto por temas (popover y vídeo, transiciones, transform, proyecto Panoplia, recorte, Heroes y repaso). Pendiente de confirmar por Igor.
 
 ---
 
@@ -115,3 +142,4 @@ La web ayuda además en dos cosas: se conecta a GitHub nada más abrirse (`preco
 | 2026-11-18 | Web rediseñada: «Igor-Movies» como tele (canales y cintas VHS), reproductor grande con anterior/siguiente y velocidad, continuar por donde ibas, buscador, duraciones, precarga del índice al pasar el ratón. Añadido `faststart.py`. No cambia el contenido de ningún bloque. |
 | 2026-11-18 | Los 10 videos pasados por `faststart.py` y vueltos a subir con el mismo nombre (mismo contenido, índice al principio). |
 | 2026-11-19 | Creado «Bloque 2» (id 3) con 16 videos, ya pasados por `faststart.py`. Flujo simplificado: Igor sube los videos tal cual y Claude los prepara. |
+| 2026-11-19 | Formularios pasa a mostrarse entre el Bloque 1 y el Bloque 2. Corrección Pokédex movida del Bloque 1 al Bloque 2. Creado «Bloque 3» (id 4) con 15 videos, pasados por `faststart.py`. |
