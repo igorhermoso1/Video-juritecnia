@@ -98,13 +98,13 @@ La web ayuda además en dos cosas: se conecta a GitHub nada más abrirse (`preco
 | 16 | Ejercicio «Muerte» 1 | `ejercicioMuerte1.mp4` | 1:27:38 | 429 MB | 2026-11-19 |
 | 17 | Corrección Pokédex | `correccion_pokedex.mp4` | 50:59 | 257 MB | 2026-11-18 |
 
-> Orden 1-16 confirmado por Igor el 2026-11-19. La Corrección Pokédex (venía del Bloque 1) va al final para no mover el orden confirmado.
+> Orden 1-16 confirmado por Igor el 2026-11-19. El 16 (mix-blend-mode, corner-shape y paint-order) va al Bloque 3 por indicación de Igor (2026-11-24), al final. La Corrección Pokédex (venía del Bloque 1) va al final para no mover el orden confirmado.
 
 ---
 
 ## Bloque 3  (id 4)
 
-- **Origen:** Release `Grabaciones` (v1.0). 15 videos subidos el 2026-11-19 (copias en `webs/video/`).
+- **Origen:** Release `Grabaciones` (v1.0). 15 videos subidos el 2026-11-19 y 1 el 2026-11-24 (copias en `webs/video/`).
 - **Estado:** abierto.
 
 | Orden | Título en la web | Archivo (release) | Duración | Tamaño | Alta |
@@ -124,8 +124,9 @@ La web ayuda además en dos cosas: se conecta a GitHub nada más abrirse (`preco
 | 13 | Instrucciones de recorte | `Intrucciones_recorte.mp4` | 23:58 | 172 MB | 2026-11-19 |
 | 14 | Heroes of arroz caldosio | `Heroes_of_arroz_caldosio.mp4` | 1:34:35 | 616 MB | 2026-11-19 |
 | 15 | Repaso intenso | `Repaso_intenso.mp4` | 55:33 | 232 MB | 2026-11-19 |
+| 16 | Mix-blend-mode, corner-shape y paint-order | `Mix-blend-mode-corner-shape-paint-order.mp4` | 1:21:39 | 322 MB | 2026-11-24 |
 
-> Orden por temas (popover y vídeo, transiciones, transform, proyecto Panoplia, recorte, Heroes y repaso), confirmado por Igor el 2026-11-19.
+> Orden por temas (popover y vídeo, transiciones, transform, proyecto Panoplia, recorte, Heroes y repaso), confirmado por Igor el 2026-11-19. El 16 (mix-blend-mode, corner-shape y paint-order) va al Bloque 3 por indicación de Igor (2026-11-24), al final.
 
 ---
 
@@ -143,3 +144,4 @@ La web ayuda además en dos cosas: se conecta a GitHub nada más abrirse (`preco
 | 2026-11-18 | Los 10 videos pasados por `faststart.py` y vueltos a subir con el mismo nombre (mismo contenido, índice al principio). |
 | 2026-11-19 | Creado «Bloque 2» (id 3) con 16 videos, ya pasados por `faststart.py`. Flujo simplificado: Igor sube los videos tal cual y Claude los prepara. |
 | 2026-11-19 | Formularios pasa a mostrarse entre el Bloque 1 y el Bloque 2. Corrección Pokédex movida del Bloque 1 al Bloque 2. Creado «Bloque 3» (id 4) con 15 videos, pasados por `faststart.py`. |
+| 2026-11-24 | Bloque 3: añadido «Mix-blend-mode, corner-shape y paint-order» (1:21:39), pasado por `faststart.py`. |
